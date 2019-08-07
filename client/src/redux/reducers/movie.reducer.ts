@@ -1,10 +1,8 @@
-import { movieTypes } from "../Actions/movie.actions";
+import { movieTypes } from "../actions/movie.actions";
 
 
 const initialState = {
-  //  id: 25,
-    name: 'pikachu',
-   // types: ['electric'],
+    name: 'Some Generic Something',
     spriteUrl: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png',
     inputValue: '25',
     loadingNewMovie: false

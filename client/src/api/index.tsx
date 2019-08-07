@@ -1,4 +1,1 @@
-export {
-    default as SECRET
-}
-from "./secret"
+export { default as SECRET }  from './omdb/secret';
