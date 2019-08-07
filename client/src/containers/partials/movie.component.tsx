@@ -1,12 +1,10 @@
 import React from 'react';
-import Axios from 'axios';
-import { IState, IMovieState } from '../Reducers';
-import { movieSearchResolved, userSubmitRequest, inputUpdate } from '../Actions/movie.actions';
+import axios from 'axios';
+import { IState, IMovieState } from '../../redux/reducers';
+import { movieSearchResolved, userSubmitRequest, inputUpdate } from '../../redux/actions/movie.actions';
 import { connect } from 'react-redux';
-import { SECRET } from '../api';
+import { SECRET } from '../../api';
 
-// Recall that mostly redux components will deal with properties
-// provided by the state store
 export interface IMovieProps {
     movie: IMovieState;
 
@@ -28,17 +26,12 @@ export class MovieComponent extends React.Component<IMovieProps> {
     }
 
     submit() {
-        console.log('submit clicked');
-        const url = `http://www.omdbapi.com/?apikey=${SECRET.MOVIE_API_KEY}&`;
+        const url = ` http://www.omdbapi.com/?i=tt3896198&apikey=${SECRET.MOVIE_API_KEY}`;
         this.props.userSubmitRequest();
-        Axios.get(url).then(payload => {
-            console.log('payload', payload)
-           // const id = payload.data.id;
-            const name = payload.data.name;
-            const spriteUrl = payload.data;
-           // const types = payload.data.types.map((typingAssignment: any) => {
-               // return name;
-           // });
+        axios.get(url).then(payload => {
+            console.log('payload', payload.data)
+            const name = payload.data.Title;
+            const spriteUrl = payload.data.Poster;
             this.props.movieSearchResolved(name, spriteUrl);
         })
     }
@@ -55,7 +48,7 @@ export class MovieComponent extends React.Component<IMovieProps> {
                 "Content-Type": "text/html",
             }
         }
-        Axios.post(url, data, config).then((payload) => {
+        axios.post(url, data, config).then((payload) => {
             console.log(payload);
         })
     }
@@ -68,11 +61,8 @@ export class MovieComponent extends React.Component<IMovieProps> {
             <div>
                 <h1>Movie Finder</h1>
                 <div id="movie-display">
-                    <h2>#{this.props.movie.name}: {this.props.movie.name}</h2>
-                {/*<img src={this.props.movie.spriteUrl}></img>*/}
-                    <div>
-                        
-                    </div>
+                    <h2>{this.props.movie.name}</h2>
+                <img src={this.props.movie.spriteUrl}></img>
                 </div>
                 <div id="movie-input">
                     <input type="text" id="movie-text-input" onChange={(e) => this.handleInputChange(e)} />

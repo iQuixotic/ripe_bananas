@@ -1,0 +1,1 @@
+export { default as MovieComponent } from './partials/movie.component';

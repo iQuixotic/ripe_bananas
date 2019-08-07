@@ -1,22 +1,19 @@
 import React from 'react';
 import { Provider } from 'react-redux';
- import { store } from '../Store';
+ import { store } from '../redux/Store';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import NavComponent from '../components/nav/navthing';
-import MovieComponent from '../components/movie.component'
-// If you exported the connected component as a default export
-// ensure you importing that component with a default import (no {})
+import { NavComponent } from '../components';
+import { MovieComponent } from '../containers';
+
 
 const App: React.FC = () => {
   return (
      <Provider store={store}>
-      <BrowserRouter>
-        
+      <BrowserRouter>        
         <Switch>
-          <Route exact path="/a" component={NavComponent} />
+          <Route exact path="/nav" component={NavComponent} />
           <Route exact path="/" component={MovieComponent} />
-        </Switch>
-        
+        </Switch>        
       </BrowserRouter>
      </Provider>
   );
