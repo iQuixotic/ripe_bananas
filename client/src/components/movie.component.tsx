@@ -1,21 +1,22 @@
 import React from 'react';
 import Axios from 'axios';
-import { IState, IPokeState } from '../Reducers';
-import { pokeSearchResolved, userSubmitRequest, inputUpdate } from '../Actions/movie.actions';
+import { IState, IMovieState } from '../Reducers';
+import { movieSearchResolved, userSubmitRequest, inputUpdate } from '../Actions/movie.actions';
 import { connect } from 'react-redux';
+import { SECRET } from '../api';
 
 // Recall that mostly redux components will deal with properties
 // provided by the state store
-export interface IPokeProps {
-    poke: IPokeState;
+export interface IMovieProps {
+    movie: IMovieState;
 
     // Action properties from the dispatcher
-    pokeSearchResolved: (name: string, id: number, spriteUrl: string, types: string[]) => void;
+    movieSearchResolved: (name: string,  spriteUrl: string,) => void;
     userSubmitRequest: () => void;
     inputUpdate: (inputValue: string) => void;
 }
 
-export class PokeComponent extends React.Component<IPokeProps> {
+export class MovieComponent extends React.Component<IMovieProps> {
     constructor(props: any) {
         super(props);
     }
@@ -28,16 +29,17 @@ export class PokeComponent extends React.Component<IPokeProps> {
 
     submit() {
         console.log('submit clicked');
-        const url = `https://pokeapi.co/api/v2/pokemon/${this.props.poke.inputValue}`;
+        const url = `http://www.omdbapi.com/?apikey=${SECRET.MOVIE_API_KEY}&`;
         this.props.userSubmitRequest();
         Axios.get(url).then(payload => {
-            const id = payload.data.id;
+            console.log('payload', payload)
+           // const id = payload.data.id;
             const name = payload.data.name;
-            const spriteUrl = payload.data.sprites.front_default;
-            const types = payload.data.types.map((typingAssignment: any) => {
-                return typingAssignment.type.name;
-            });
-            this.props.pokeSearchResolved(name, id, spriteUrl, types);
+            const spriteUrl = payload.data;
+           // const types = payload.data.types.map((typingAssignment: any) => {
+               // return name;
+           // });
+            this.props.movieSearchResolved(name, spriteUrl);
         })
     }
 
@@ -59,22 +61,22 @@ export class PokeComponent extends React.Component<IPokeProps> {
     }
 
     render() {
-        const types = this.props.poke.types.map((type) => {
-            return (<span key={type} className="poke-type-span">{type}</span>);
-        })
+       // const types = this.props.movie.types.map((type:any) => {
+           //return (<span key={type} className="movie-type-span">{type}</span>);
+        //})
         return (
             <div>
-                <h1>Poke Finder</h1>
-                <div id="poke-display">
-                    <h2>#{this.props.poke.id}: {this.props.poke.name}</h2>
-                    <img src={this.props.poke.spriteUrl}></img>
+                <h1>Movie Finder</h1>
+                <div id="movie-display">
+                    <h2>#{this.props.movie.name}: {this.props.movie.name}</h2>
+                {/*<img src={this.props.movie.spriteUrl}></img>*/}
                     <div>
-                        {types}
+                        
                     </div>
                 </div>
-                <div id="poke-input">
-                    <input type="text" id="poke-text-input" onChange={(e) => this.handleInputChange(e)} />
-                    <button onClick={() => this.submit()}>Submit</button>
+                <div id="movie-input">
+                    <input type="text" id="movie-text-input" onChange={(e) => this.handleInputChange(e)} />
+                    <button onClick={() => this.submit()}>Find my api</button>
                     <button onClick={() => this.submitPost()}>Submit</button>
                 </div>
             </div>
@@ -83,13 +85,13 @@ export class PokeComponent extends React.Component<IPokeProps> {
 }
 
 const mapStateToProps = (state: IState) => ({
-    poke: state.poke
+    movie: state.movie
 });
 
 const mapDispatchToProps = {
-    pokeSearchResolved: pokeSearchResolved,
+    movieSearchResolved: movieSearchResolved,
     userSubmitRequest: userSubmitRequest,
     inputUpdate: inputUpdate
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PokeComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(MovieComponent);
