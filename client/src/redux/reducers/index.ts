@@ -1,15 +1,18 @@
 import { combineReducers } from "redux";
 
 import { movieReducer } from "./movie.reducer";
+import { pageReducer } from "./page.reducer";
 
+
+
+export interface IPageState {
+  message: string;
+}
 
 export interface IMovieState {
     name: string;
-   // id: number;
-   
     spriteUrl: string;
-    //types: string[];
-    inputValue: string; // Do we consider the current state of input as application state?
+    inputValue: string;
     loadingNewMovie: boolean;
 }
 
@@ -17,10 +20,12 @@ export interface IMovieState {
 // means that to access clicks -> state.clicker.clicks
 export interface IState {
    // clicker: IClickerState,
+   page: IPageState
     movie: IMovieState
 }
 
 export const state = combineReducers<IState>({
   //  clicker: clickerReducer,
-    movie: movieReducer
+  page: pageReducer,
+  movie: movieReducer
 })

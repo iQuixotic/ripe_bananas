@@ -1,9 +1,9 @@
 import React from 'react';
-import axios from 'axios';
 import { IState, IMovieState } from '../../redux/reducers';
 import { movieSearchResolved, userSubmitRequest, inputUpdate } from '../../redux/actions/movie.actions';
 import { connect } from 'react-redux';
-import { SECRET } from '../../api';
+// import axios from 'axios'
+import { OMDB } from '../../api';
 
 export interface IMovieProps {
     movie: IMovieState;
@@ -25,10 +25,10 @@ export class MovieComponent extends React.Component<IMovieProps> {
         this.props.inputUpdate(value);
     }
 
-    submit() {
-        const url = ` http://www.omdbapi.com/?i=tt3896198&apikey=${SECRET.MOVIE_API_KEY}`;
+    submit() {       
         this.props.userSubmitRequest();
-        axios.get(url).then(payload => {
+        OMDB.getSingleMovie()
+            .then(payload => {
             console.log('payload', payload.data)
             const name = payload.data.Title;
             const spriteUrl = payload.data.Poster;
@@ -37,20 +37,20 @@ export class MovieComponent extends React.Component<IMovieProps> {
     }
 
     submitPost() {
-        const url = `https://api.myjson.com/bins`;
-        const data = {
-            a: 'Abby',
-            b: 'Billy',
-            c: 'Cindy'
-        };
-        const config = {
-            headers: {
-                "Content-Type": "text/html",
-            }
-        }
-        axios.post(url, data, config).then((payload) => {
-            console.log(payload);
-        })
+        // const url = `https://api.myjson.com/bins`;
+        // const data = {
+        //     a: 'Abby',
+        //     b: 'Billy',
+        //     c: 'Cindy'
+        // };
+        // const config = {
+        //     headers: {
+        //         "Content-Type": "text/html",
+        //     }
+        // }
+        // axios.post(url, data, config).then((payload) => {
+        //     console.log(payload);
+        // })
     }
 
     render() {
