@@ -25,9 +25,7 @@ export const movieReducer = (state = initialState, action: any) => {
         case movieTypes.MOVIE_SEARCH_RESOLVED:
             return {
                 ...state,
-                //id: action.payload.id,
                 name: action.payload.name,
-               // types: action.payload.types,
                 spriteUrl: action.payload.spriteUrl,
                 loadingNewMovie: false
             }

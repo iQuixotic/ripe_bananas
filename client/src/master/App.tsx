@@ -3,7 +3,9 @@ import { Provider } from 'react-redux';
  import { store } from '../redux/Store';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { NavComponent } from '../components';
-import { MovieComponent } from '../containers';
+import {
+   MovieComponent, DashboardPg 
+} from '../containers';
 
 
 const App: React.FC = () => {
@@ -13,6 +15,7 @@ const App: React.FC = () => {
         <Switch>
           <Route exact path="/nav" component={NavComponent} />
           <Route exact path="/" component={MovieComponent} />
+          <Route exact path="/dashboard" component={DashboardPg} />
         </Switch>        
       </BrowserRouter>
      </Provider>
