@@ -1,11 +1,131 @@
 import React from 'react';
+import logo from './logo.png';
+import Searchbar from './searchbar';
+import 'react-fa';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-
+/**
+ * This component renders the navbar for the website.
+ * Menu features will change dependant on if a user is
+ * logged in or not. Contains the website name, logo and
+ * a menu with the searchbar, movie list and fluctuating options,
+ * signup, login, profile and logout.
+ */
 const NavComponent = () => {
     return (
-        <nav className='Navbar'>             
-            Hello from the nav NavComponent. 
-        </nav>
+        <div>
+  
+            {/* Navbar expands when large, collapses when md or smaller */}
+            <nav className="navigation navbar nav-img navbar-toggleable-md 
+            navbar-expand-lg navbar-dark bg-dark display-front nav-pad d-flex">
+  
+                {/* for the header. includes title and logo */}
+                <div className="align-items-end row blue-bg display-inline">
+                    <div className="navbar-header display-inline" id="title">Ripe Bananas</div>
+                    <img className="logo display-inline" src={logo} alt="Bananas"/>
+                </div>
+  
+                {/* button for menu on mobile */}
+                <button className="navbar-toggler" id="rb-btn" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                    <FontAwesomeIcon icon={faBars} />
+                </button>
+  
+                {/* menu for the navbar */}
+                <div className="collapse navbar-collapse" id="navbarsExample04">
+                    <ul className="navbar-nav ml-auto margin-nav">
+                        <li className="nav-item"><Searchbar /></li>
+                        <li className="p5px"><button className="btn" id="rb-btn">movies</button></li>
+                        <li className="p5px"><button className="btn" id="rb-btn" 
+                        data-toggle="modal" data-target="#signup-modal">signup</button></li>
+                        <li className="p5px"><button className="btn" id="rb-btn"
+                        data-toggle="modal" data-target="#login-modal">login</button></li>
+                    </ul>
+                </div>
+            </nav>
+
+            {/* signup modal */}
+            <div className="modal fade login" id="signup-modal" role="dialog" aria-labelledby="signupModal" aria-hidden="true">
+                <div className="modal-dialog modal-dialog-centered" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h3 className="modal-title" id="exampleModalLabel">SIGNUP</h3>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div className="modal-body">
+                            <form>
+                                <div className="form-row">
+                                    <div className="form-group col-6">
+                                        <label><strong>First Name</strong></label>
+                                        <input type="text" className="form-control"/>
+                                    </div>
+                                    <div className="form-group col-6">
+                                        <label><strong>Last Name</strong></label>
+                                        <input type="text" className="form-control"/>
+                                    </div>
+                                    
+                                </div>
+                                <div className="form-group">
+                                    <label><strong>Email</strong></label>
+                                    <input type="email" className="form-control"/>
+                                </div>
+                                <div className="form-row">
+                                    <div className="form-group col-6">
+                                        <label><strong>Password</strong></label>
+                                        <input type="password" className="form-control"/>
+                                    </div>
+                                    <div className="form-group col-6">
+                                        <label><strong>Confirm Password</strong></label>
+                                        <input type="password" className="form-control"/>
+                                    </div>
+                                    
+                                </div>
+                            </form>
+                            <button type="button" className="btn btn-block" id="rb-btn">Signup</button>
+                        </div>
+                        <div className="modal-footer">
+                            {'Already have an account? '}
+                            <a className="signup" data-dismiss="modal" 
+                            data-toggle="modal" data-target="#login-modal"> login here</a>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* login modal */}
+            <div className="modal fade login" id="login-modal" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
+                <div className="modal-dialog modal-dialog-centered" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h3 className="modal-title" id="exampleModalLabel">LOGIN</h3>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div className="modal-body">
+                            <form>
+                                <div className="form-group">
+                                    <label><strong>Email address</strong></label>
+                                    <input type="text" className="form-control"/>
+                                </div>
+                                <div className="form-group">
+                                    <label><strong>Password</strong></label>
+                                    <input type="password" className="form-control"/>
+                                </div>
+                            </form>
+                            <button type="button" className="btn btn-block" id="rb-btn">Login</button>
+                        </div>
+                        <div className="modal-footer">
+                            Don't have an account? 
+                            <a className="signup" data-dismiss="modal" 
+                            data-toggle="modal" data-target="#signup-modal"> Sign up here</a>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     );
 }
 

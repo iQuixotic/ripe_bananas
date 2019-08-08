@@ -1,3 +1,33 @@
-* {
+/* * {
   font-size: 10px;
+} */
+
+@media screen and (max-width: 600px) {
+    .navbar .nav-img {
+      min-height: 20vh;
+    }
+  
+    .navbar #title {
+      font-size: 25px;
+    }
+  
+    .navbar .logo {
+      height: 25px;
+    }
 }
+
+#rb-btn {
+    background-color: #1030AD;
+    color: white;
+  }
+  
+  #rb-btn:hover {
+    background-color: #1030AD;
+    color: #F5C518;
+  }
+  
+  #rb-btn:focus {
+    background-color: #F5C518;
+    color: #1030AD;
+  }
+
