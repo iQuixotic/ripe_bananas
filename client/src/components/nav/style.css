@@ -1,0 +1,77 @@
+.nav-img {
+    /* The image used */
+    background-image: url("./audience.jpg");
+    background-color: #1030AD;
+    min-height: 30vh;
+    min-width: 100vw;
+  
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  
+    /* Needed to position the navigation */
+    position: relative;  
+}
+
+.navigation .nav-container {
+    position: absolute;
+    margin: 20px;
+    width: auto;
+}
+
+.navigation #title {
+    color: #F5C518;
+    font-size: 40px;
+    font-weight: bold;
+    justify-items: center;
+}
+
+.navigation .blue-bg {  
+    background-color: #1030AD;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.navigation .collapse .p5px {
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.navigation .logo {
+    background-image: url('./logo.png');
+    width: auto;
+    height: 40px;
+    justify-items: center;
+}
+
+.searchbar .br0 {
+    border-radius: 0;
+}
+
+.modal-title {
+    color: #F5C518;
+}
+
+.login .modal-footer {
+    text-align: center;
+    background-color: lightgray;
+}
+
+.login .modal-footer .signup {
+    color: #1030AD;
+    cursor: pointer;
+}
+
+.login .modal-footer .signup:hover {
+    color: lightskyblue;
+    cursor: pointer;
+}
+
+.login .modal-header {
+    background-color: #1030AD;
+}
+
+.login .close {
+    color: white;
+}

@@ -1,4 +1,6 @@
 import React from 'react';
+import '../include/bootstrap';
+import './main.css'
 import { Provider } from 'react-redux';
  import { store } from '../redux/Store';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
@@ -11,9 +13,9 @@ import {
 const App: React.FC = () => {
   return (
      <Provider store={store}>
-      <BrowserRouter>        
+      <BrowserRouter>  
+        <NavComponent />      
         <Switch>
-          <Route exact path="/nav" component={NavComponent} />
           <Route exact path="/" component={MovieComponent} />
           <Route exact path="/dashboard" component={DashboardPg} />
         </Switch>        
