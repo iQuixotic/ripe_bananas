@@ -25,8 +25,7 @@ export class fourOfourPg extends React.Component<IPageProps> {
     render() {
         return (
             <div>
-                {this.props.message.message}
-                Hello from the landing page.
+                Something went wrong.
             </div>
         );
     }
