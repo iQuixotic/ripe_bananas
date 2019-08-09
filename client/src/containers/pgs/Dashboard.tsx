@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 // import { SECRET } from '../../api';
 import { IState, IPageState } from '../../redux/reducers';
 import { dashboardMessageReq } from '../../redux/actions/pages.actions';
+import Carousel  from '../../components/carousel/carousel'
 
 export interface IPageProps {
     message: IPageState;
@@ -25,8 +26,15 @@ export class DashboardPg extends React.Component<IPageProps> {
     render() {
         return (
             <div>
-                {this.props.message.message}
-                Hello from the landing page.
+                <div className="row">
+                    <div className="col-2 col-sm-2 col-md-2 col-lg-2 display-inline"></div>
+                    <div className="col-8 col-sm-8 col-md-5 col-lg-2 display-inline">
+                        <Carousel />
+                    </div>
+                </div>
+                {/* {this.props.message.message}
+                Dashboard
+                <Carousel /> */}
             </div>
         );
     }

@@ -2,7 +2,7 @@ import { messageTypes } from "../actions/pages.actions";
 
 
 const initialState = {
-    message: 'This is a test'
+    message: 'This is a test '
 };
 
 

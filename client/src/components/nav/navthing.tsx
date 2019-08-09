@@ -4,6 +4,7 @@ import Searchbar from './searchbar';
 import 'react-fa';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 
 /**
  * This component renders the navbar for the website.
@@ -14,11 +15,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
  */
 const NavComponent = () => {
     return (
-        <div>
+        <div className="navigation">
   
             {/* Navbar expands when large, collapses when md or smaller */}
-            <nav className="navigation navbar nav-img navbar-toggleable-md 
-            navbar-expand-lg navbar-dark bg-dark display-front nav-pad d-flex">
+            <nav className="navbar nav-img navbar-toggleable-md 
+            navbar-expand-md navbar-dark bg-dark display-front nav-pad d-flex">
   
                 {/* for the header. includes title and logo */}
                 <div className="align-items-end row blue-bg display-inline">
@@ -35,11 +36,14 @@ const NavComponent = () => {
                 <div className="collapse navbar-collapse" id="navbarsExample04">
                     <ul className="navbar-nav ml-auto margin-nav">
                         <li className="nav-item"><Searchbar /></li>
-                        <li className="p5px"><button className="btn" id="rb-btn">movies</button></li>
+                        <li className="p5px"><Link className="btn" id="rb-btn" to="/dashboard">Home</Link></li>
+                        <li className="p5px"><Link className="btn" id="rb-btn" to="/movies">Movies</Link></li>
+                        {/* <li className="p5px"><Link className="btn" id="rb-btn" to="/landing">Profile</Link></li> */}
                         <li className="p5px"><button className="btn" id="rb-btn" 
                         data-toggle="modal" data-target="#signup-modal">signup</button></li>
                         <li className="p5px"><button className="btn" id="rb-btn"
                         data-toggle="modal" data-target="#login-modal">login</button></li>
+                        {/* <li className="p5px"><button className="btn" id="rb-btn">Logout</button></li> */}
                     </ul>
                 </div>
             </nav>

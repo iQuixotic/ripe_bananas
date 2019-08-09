@@ -1,4 +1,4 @@
-.nav-img {
+.navigation .nav-img {
     /* The image used */
     background-image: url("./audience.jpg");
     background-color: #1030AD;
@@ -49,7 +49,7 @@
     border-radius: 0;
 }
 
-.modal-title {
+.login .modal-title {
     color: #F5C518;
 }
 
@@ -74,4 +74,18 @@
 
 .login .close {
     color: white;
+}
+
+@media screen and (max-width: 600px) {
+    .navigation .nav-img {
+      min-height: 20vh;
+    }
+  
+    .navigation #title {
+      font-size: 25px;
+    }
+  
+    .navigation .logo {
+      height: 25px;
+    }
 }

@@ -3,15 +3,15 @@
 } */
 
 @media screen and (max-width: 600px) {
-    .navbar .nav-img {
+    .navigation .nav-img {
       min-height: 20vh;
     }
   
-    .navbar #title {
+    .navigation #title {
       font-size: 25px;
     }
   
-    .navbar .logo {
+    .navigation .logo {
       height: 25px;
     }
 }

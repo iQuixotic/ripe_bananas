@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
  * This component renders a search bar that has a text input field,
  * a select to choose how to seach and a search button
  */
-const Searchbar = () => {
+const Searchbar: React.FC = () => {
     return (
         <div className="searchbar input-group mb-3 col-12"> 
 

@@ -8,15 +8,16 @@ import { NavComponent } from '../components';
 import {
    MovieComponent, DashboardPg, SomethingWentWrongPg
 } from '../containers';
+import Test from '../components/carousel/test';
 
 
 const App: React.FC = () => {
   return (
      <Provider store={store}>
       <BrowserRouter>  
-        <NavComponent />      
+        <NavComponent />
         <Switch>
-          <Route exact path="/" component={MovieComponent} />
+          <Route exact path="/movies" component={MovieComponent} />
           <Route exact path="/dashboard" component={DashboardPg} />
           <Route exact path="/home/404" component={SomethingWentWrongPg} />
           <Redirect from='/*' to='/home/404'/>
