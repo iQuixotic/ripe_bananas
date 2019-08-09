@@ -6,17 +6,18 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { NavComponent } from '../components';
 import {
-   MovieComponent, DashboardPg 
+   MovieComponent, DashboardPg
 } from '../containers';
+import Test from '../components/carousel/test';
 
 
 const App: React.FC = () => {
   return (
      <Provider store={store}>
       <BrowserRouter>  
-        <NavComponent />      
+        <NavComponent />
         <Switch>
-          <Route exact path="/" component={MovieComponent} />
+          <Route exact path="/movies" component={MovieComponent} />
           <Route exact path="/dashboard" component={DashboardPg} />
         </Switch>        
       </BrowserRouter>
