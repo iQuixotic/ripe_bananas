@@ -3,10 +3,10 @@ import '../include/bootstrap';
 import './main.css'
 import { Provider } from 'react-redux';
  import { store } from '../redux/Store';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { NavComponent } from '../components';
 import {
-   MovieComponent, DashboardPg
+   MovieComponent, DashboardPg, SomethingWentWrongPg
 } from '../containers';
 import Test from '../components/carousel/test';
 
@@ -19,6 +19,8 @@ const App: React.FC = () => {
         <Switch>
           <Route exact path="/movies" component={MovieComponent} />
           <Route exact path="/dashboard" component={DashboardPg} />
+          <Route exact path="/home/404" component={SomethingWentWrongPg} />
+          <Redirect from='/*' to='/home/404'/>
         </Switch>        
       </BrowserRouter>
      </Provider>
