@@ -15,9 +15,6 @@ export interface IMovieProps {
 }
 
 export class MovieComponent extends React.Component<IMovieProps> {
-    constructor(props: any) {
-        super(props);
-    }
 
     handleInputChange(e: any) {
         console.log('input changing');
@@ -62,7 +59,7 @@ export class MovieComponent extends React.Component<IMovieProps> {
                 <h1>Movie Finder</h1>
                 <div id="movie-display">
                     <h2>{this.props.movie.name}</h2>
-                <img src={this.props.movie.spriteUrl}></img>
+                <img src={this.props.movie.spriteUrl} alt="sprite"></img>
                 </div>
                 <div id="movie-input">
                     <input type="text" id="movie-text-input" onChange={(e) => this.handleInputChange(e)} />

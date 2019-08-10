@@ -18,7 +18,7 @@ const Searchbar: React.FC = () => {
             {/* div contains the two buttons appended to the text input  */}
             <div className="input-group-append" id="button-addon4">
                 <select className="custom-select br0" id="inputGroupSelect04">
-                    <option selected>Select</option>
+                    <option defaultValue="0">Select</option>
                     <option value="1">Title</option>
                     <option value="2">Genre</option>
                 </select>

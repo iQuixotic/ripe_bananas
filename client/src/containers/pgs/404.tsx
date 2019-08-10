@@ -17,10 +17,6 @@ export interface IPageProps {
 }
 
 export class fourOfourPg extends React.Component<IPageProps> {
-    constructor(props: any) {
-        super(props);
-    }
-
 
     render() {
         return (

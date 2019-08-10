@@ -18,10 +18,6 @@ export interface IPageProps {
 }
 
 export class DashboardPg extends React.Component<IPageProps> {
-    constructor(props: any) {
-        super(props);
-    }
-
 
     render() {
         return (

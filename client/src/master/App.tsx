@@ -8,7 +8,6 @@ import { NavComponent } from '../components';
 import {
    MovieComponent, DashboardPg, SomethingWentWrongPg
 } from '../containers';
-import Test from '../components/carousel/test';
 
 
 const App: React.FC = () => {
