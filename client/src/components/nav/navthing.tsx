@@ -73,6 +73,14 @@ class NavComponent extends React.Component<ILoginProps> {
         this.props.signupLastnameUpdate(value);
     }
 
+    signupUser() {
+        console.log(this.props.login.firstname);
+        console.log(this.props.login.lastname);
+        console.log(this.props.login.signupEmail);
+        console.log(this.props.login.signupPassword);
+        console.log(this.props.login.confirmPassword);
+    }
+
     /**
      * Contains the axios call to the backend to log in a user using
      * the email and password they type in the login modal
@@ -190,7 +198,8 @@ class NavComponent extends React.Component<ILoginProps> {
                                         
                                     </div>
                                 </form>
-                                <button type="button" className="btn btn-block" id="rb-btn">Signup</button>
+                                <button type="button" className="btn btn-block" id="rb-btn"
+                                onClick={() => this.signupUser()}>Signup</button>
                             </div>
                             <div className="modal-footer">
                                 {'Already have an account? '}
