@@ -8,6 +8,7 @@ import { NavComponent } from '../components';
 import {
    MovieComponent, DashboardPg, SomethingWentWrongPg
 } from '../containers';
+// import SearchResult from '../components/result/SearchResult';
 
 
 const App: React.FC = () => {
