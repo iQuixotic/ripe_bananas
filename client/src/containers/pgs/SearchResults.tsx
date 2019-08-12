@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 // import { SECRET } from '../../api';
 import { IState, IPageState } from '../../redux/reducers';
 import { dashboardMessageReq } from '../../redux/actions/pages.actions';
-// import Carousel  from '../../components/carousel/carousel'
-import SearchResult from '../../components/result/SearchResult';
 
 export interface IPageProps {
     message: IPageState;
@@ -18,22 +16,16 @@ export interface IPageProps {
     // singleReviewMessageReq: () => void;
 }
 
-export class DashboardPg extends React.Component<IPageProps> {
+export class SearchResults extends React.Component<IPageProps> {
 
     render() {
         return (
-            <div>
-                <div className="row">
-                    <div className="col-0 col-sm-0 col-md-0 col-lg-1 col-xl-1 display-inline"></div>                    
-                        <SearchResult />
-                        <SearchResult />
-                        <SearchResult />
-                        <SearchResult />                        
-                        <SearchResult />
+            <div className="search-wrapper">
+
+                <div className="results-wrapper col-12">
+                    //results from OMDB
                 </div>
-                {/* {this.props.message.message}
-                Dashboard
-                <Carousel /> */}
+
             </div>
         );
     }
@@ -50,4 +42,4 @@ const mapDispatchToProps = {
     // inputUpdate: inputUpdate
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DashboardPg);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchResults);

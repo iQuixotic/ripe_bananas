@@ -1,0 +1,15 @@
+.result-wrapper {
+    border-block-color: black;
+    border-color: black;
+    padding: 0;
+    padding-top: 20px;
+}
+
+.c-image {
+    height: auto;
+    width: 100%;
+}
+
+.poster-wrapper {
+    background-color: lightgray;
+}
