@@ -6,6 +6,7 @@ import { IState, IPageState } from '../../redux/reducers';
 import { dashboardMessageReq } from '../../redux/actions/pages.actions';
 // import Carousel  from '../../components/carousel/carousel'
 import SearchResult from '../../components/result/SearchResult';
+import MovieInfo from '../../components/review/movieInfo';
 
 export interface IPageProps {
     message: IPageState;
@@ -24,7 +25,8 @@ export class DashboardPg extends React.Component<IPageProps> {
         return (
             <div>
                 <div className="row">
-                    <div className="col-0 col-sm-0 col-md-0 col-lg-1 col-xl-1 display-inline"></div>                    
+                    <div className="col-0 col-sm-0 col-md-0 col-lg-1 col-xl-1 display-inline"></div> 
+                        <MovieInfo />                   
                         <SearchResult />
                         <SearchResult />
                         <SearchResult />
