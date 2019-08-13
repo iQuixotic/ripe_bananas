@@ -20,8 +20,10 @@ export interface IPageState {
 
 export interface IMovieState {
     name: string;
-    spriteUrl: string;
+    posterUrl: string;
     inputValue: string;
+    toDashboard: boolean;
+    searchObject: any;
     loadingNewMovie: boolean;
 }
 

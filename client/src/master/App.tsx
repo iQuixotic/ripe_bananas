@@ -3,7 +3,7 @@ import '../include/bootstrap';
 import './main.css'
 import { Provider } from 'react-redux';
  import { store } from '../redux/Store';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { NavComponent } from '../components';
 import {
    MovieComponent, DashboardPg, SomethingWentWrongPg
@@ -14,7 +14,7 @@ import {
 const App: React.FC = () => {
   return (
      <Provider store={store}>
-      <BrowserRouter>  
+      <HashRouter>  
         <NavComponent />
         <Switch>
           <Route exact path="/" component={MovieComponent} />
@@ -23,7 +23,7 @@ const App: React.FC = () => {
           <Route exact path="/home/404" component={SomethingWentWrongPg} />
           <Redirect from='/*' to='/home/404'/>
         </Switch>        
-      </BrowserRouter>
+      </HashRouter>
      </Provider>
   );
 }

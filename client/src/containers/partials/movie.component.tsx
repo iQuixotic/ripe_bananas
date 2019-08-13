@@ -9,7 +9,7 @@ export interface IMovieProps {
     movie: IMovieState;
 
     // Action properties from the dispatcher
-    movieSearchResolved: (name: string,  spriteUrl: string,) => void;
+    movieSearchResolved: (name: string,  posterUrl: string,) => void;
     userSubmitRequest: () => void;
     inputUpdate: (inputValue: string) => void;
 }
@@ -24,30 +24,13 @@ export class MovieComponent extends React.Component<IMovieProps> {
 
     submit() {       
         this.props.userSubmitRequest();
-        OMDB.getSingleMovie()
+        OMDB.getMoviesByTitle(this.props.movie.inputValue)
             .then(payload => {
             console.log('payload', payload.data)
             const name = payload.data.Title;
-            const spriteUrl = payload.data.Poster;
-            this.props.movieSearchResolved(name, spriteUrl);
+            const posterUrl = payload.data.Poster;
+            this.props.movieSearchResolved(name, posterUrl);
         })
-    }
-
-    submitPost() {
-        // const url = `https://api.myjson.com/bins`;
-        // const data = {
-        //     a: 'Abby',
-        //     b: 'Billy',
-        //     c: 'Cindy'
-        // };
-        // const config = {
-        //     headers: {
-        //         "Content-Type": "text/html",
-        //     }
-        // }
-        // axios.post(url, data, config).then((payload) => {
-        //     console.log(payload);
-        // })
     }
 
     render() {
@@ -59,12 +42,11 @@ export class MovieComponent extends React.Component<IMovieProps> {
                 <h1>Movie Finder</h1>
                 <div id="movie-display">
                     <h2>{this.props.movie.name}</h2>
-                <img src={this.props.movie.spriteUrl} alt="sprite"></img>
+                <img src={this.props.movie.posterUrl} alt="poster"></img>
                 </div>
                 <div id="movie-input">
                     <input type="text" id="movie-text-input" onChange={(e) => this.handleInputChange(e)} />
                     <button onClick={() => this.submit()}>Find my api</button>
-                    <button onClick={() => this.submitPost()}>Submit</button>
                 </div>
             </div>
         );
