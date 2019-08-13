@@ -142,8 +142,8 @@ class NavComponent extends React.Component<ILoginProps> {
                     <div className="collapse navbar-collapse" id="navbarsExample04">
                         <ul className="navbar-nav ml-auto margin-nav">
                             <li className="nav-item"><Searchbar /></li>
-                            <li className="p5px"><Link className="btn" id="rb-btn" to="/dashboard">Home</Link></li>
-                            <li className="p5px"><Link className="btn" id="rb-btn" to="/movies">Movies</Link></li>
+                            <li className="p5px"><Link className="btn" id="rb-btn" to="/">Home</Link></li>
+                            {/* <li className="p5px"><Link className="btn" id="rb-btn" to="/movies">Movies</Link></li> */}
                             {/* <li className="p5px"><Link className="btn" id="rb-btn" to="/landing">Profile</Link></li> */}
                             <li className="p5px"><button className="btn" id="rb-btn" 
                             data-toggle="modal" data-target="#signup-modal">signup</button></li>

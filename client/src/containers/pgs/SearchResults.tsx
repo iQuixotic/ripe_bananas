@@ -22,8 +22,11 @@ export class SearchResults extends React.Component<IPageProps> {
         return (
             <div className="search-wrapper">
 
-                <div className="results-wrapper col-12">
+                <div className="results-wrapper col-0 col-sm-0 col-md-0 col-lg-1 col-xl-1 display-inline">
+                    idv result page
                     //results from OMDB
+                    // component that creates search result components
+                    // based on number returned from the search
                 </div>
 
             </div>
