@@ -15,11 +15,11 @@ export interface IMovieProps {
     movie: IMovieState;
 
     // Action properties from the dispatcher
-    movieSearchResolved: (name: string,  posterUrl: string,) => void;
+    movieSearchResolved: (name: string,  plot: string, year: string, posterUrl: string,) => void;
     userSubmitRequest: () => void;
     inputUpdate: (inputValue: string) => void;
     toDashboard: (toDashboard: boolean) => void;
-    movieSearchObject: (searchObject: object[]) => void;
+    movieSearchObject: (titleList: string[], posterList: string[], yearList: string[]) => void;
 }
 
 /**
@@ -41,14 +41,18 @@ class Searchbar extends React.Component<IMovieProps>{
 
     submit() {       
         this.props.userSubmitRequest();
-        OMDB.getSingleMovie(this.props.movie.inputValue)
+        OMDB.getMoviesByTitle(this.props.movie.inputValue)
             .then(payload => {
-            const name = payload.data.Title;
-            const posterUrl = payload.data.Poster;
-            this.props.movieSearchResolved(name, posterUrl);
-            // this.props.movieSearchObject(payload.data.Search);  
-            // console.log(payload.data.Search);
-            // console.log("redux: " + this.props.movie.searchObject);
+                let titleList = new Array<string>();
+                let posterList = new Array<string>();
+                let yearList = new Array<string>();
+                for(let i = 0; i < payload.data.Search.length; i++) {
+                    titleList.push(payload.data.Search[i].Title);
+                    posterList.push(payload.data.Search[i].Poster);
+                    yearList.push(payload.data.Search[i].Year);
+                    console.log(payload.data.Search[i].Year);
+                }
+            this.props.movieSearchObject(titleList, posterList, yearList);  
             this.goToDashboard();          
         });
     }
@@ -60,7 +64,7 @@ class Searchbar extends React.Component<IMovieProps>{
     render() {   
         if (this.props.movie.toDashboard === true) {
             this.goToDashboard();
-            return <Redirect to='/dashboard' />
+            return <Redirect to="/results" />
         }
 
         return (

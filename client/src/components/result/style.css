@@ -3,13 +3,25 @@
     border-color: black;
     padding: 0;
     padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .c-image {
-    height: auto;
-    width: 100%;
+    width: 150px;
+    height: 225px;  
 }
 
 .poster-wrapper {
     background-color: lightgray;
+}
+
+.poster-btn {
+    margin: 0;
+    padding: 1px;
+    background-color: black;
+    transition: transform .2s;
+}
+
+.poster-btn:hover {
+    transform: scale(1.5);
 }

@@ -1,7 +1,7 @@
 import * as React from "react";
 import NoPoster from "./NoPoster.jpg";
 import "./style.css";
-import { ILoginState, IState } from "../../redux/reducers";
+import { ILoginState, IState, IMovieState } from "../../redux/reducers";
 import {
   loginEmailUpdate,
   loginPasswordUpdate,
@@ -11,12 +11,30 @@ import {
   signupFirstnameUpdate,
   signupLastnameUpdate
 } from "../../redux/actions/loginsignup.actions";
+import {
+  movieSearchResolved,
+  userSubmitRequest,
+  inputUpdate,
+  toDashboard
+} from "../../redux/actions/movie.actions";
 import { connect } from "react-redux";
 
 export interface IMovieInfoProps {
   login: ILoginState;
+  movie: IMovieState;
 
-  // action porperties
+  // Action properties from movie actions
+  movieSearchResolved: (
+    name: string,
+    plot: string,
+    year: string,
+    posterUrl: string
+  ) => void;
+  userSubmitRequest: () => void;
+  inputUpdate: (inputValue: string) => void;
+  toDashboard: (toDashboard: boolean) => void;
+
+  // action porperties from login actions
   loginEmailUpdate: (email: string) => void;
   loginPasswordUpdate: (password: string) => void;
   signupEmailUpdate: (email: string) => void;
@@ -87,29 +105,13 @@ class MovieInfo extends React.Component<IMovieInfoProps> {
     console.log(this.props.login);
     console.log(this.props.login.loginEmail);
     console.log(this.props.login.loginPassword);
-    // const url = "http://localhost:8080/login"
-    // Axios({
-    //   method: "post",
-    //   url: url,
-    //   data: {
-    //     email: this.props.loginEmailUpdate,
-    //     password: this.props.loginPasswordUpdate
-    //   }
-    // });
-    //-------then catch block to be added in later---------
-    //   .then(res => {
-    //     window.localStorage.setItem('token', res.data.token);
-    //     this.props.history.push("/home");
-    //     return res.data;
-    //   })
-    //   .catch(err => {
-    //     this.setState({
-    //       ...this.state,
-    //       badLogin: true
-    //     });
-    //     console.log(err);
-    //   });
-    //--------------------------------------------------------
+  }
+
+  getPoster(): string {
+    if (this.props.movie.posterUrl === "N/A") {
+      return NoPoster;
+    }
+    return this.props.movie.posterUrl;
   }
 
   public render() {
@@ -118,17 +120,16 @@ class MovieInfo extends React.Component<IMovieInfoProps> {
         <div className="row">
           <div className="col-1 display-inline" />
           <div className="poster col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3 display-inline">
-            <img src={NoPoster} alt="poster" className="w-100 c-image" />
+            <img src={this.getPoster()} alt="poster" className="r-image" />
           </div>
           <div className="info col-10 col-sm-10 col-md-7 col-lg-7 col-xl-7 display-inline">
-            <h1 className="col-12">Title</h1>
+            <h1 className="col-12">
+              {this.props.movie.name}
+              {` (${this.props.movie.year})`}
+            </h1>
+            <hr/>
             <h3 className="col-12">Plot:</h3>
-            <p className="col-12">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit
-              voluptate vero ex, doloremque quis quae harum enim id adipisci
-              similique modi, perferendis cupiditate eaque non, ut cum? Minima,
-              quae cum!
-            </p>
+            <p className="col-12">{this.props.movie.plot}</p>
             <div className="row col-12">
               <h3 className="display-inline col-3">Rating: </h3>
             </div>
@@ -442,7 +443,8 @@ class MovieInfo extends React.Component<IMovieInfoProps> {
 }
 
 const mapStateToProps = (state: IState) => ({
-  login: state.login
+  login: state.login,
+  movie: state.movie
 });
 
 const mapDispatchToProps = {
@@ -452,7 +454,11 @@ const mapDispatchToProps = {
   signupPasswordUpdate: signupPasswordUpdate,
   signupConfirmPassword: signupConfirmPassword,
   signupFirstnameUpdate: signupFirstnameUpdate,
-  signupLastnameUpdate: signupLastnameUpdate
+  signupLastnameUpdate: signupLastnameUpdate,
+  movieSearchResolved: movieSearchResolved,
+  userSubmitRequest: userSubmitRequest,
+  inputUpdate: inputUpdate,
+  toDashboard: toDashboard
 };
 
 export default connect(

@@ -6,9 +6,8 @@ import { Provider } from 'react-redux';
 import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { NavComponent } from '../components';
 import {
-   MovieComponent, DashboardPg, SomethingWentWrongPg
+   MovieComponent, DashboardPg, SomethingWentWrongPg, SingleReviewPg, SearchResults
 } from '../containers';
-// import SearchResult from '../components/result/SearchResult';
 
 
 const App: React.FC = () => {
@@ -18,7 +17,8 @@ const App: React.FC = () => {
         <NavComponent />
         <Switch>
           <Route exact path="/" component={MovieComponent} />
-          {/* <Route exact path="/movies" component={MovieComponent} /> */}
+          <Route exact path="/review" component={SingleReviewPg} />
+          <Route exact path="/results" component={SearchResults} />
           <Route exact path="/dashboard" component={DashboardPg} />
           <Route exact path="/home/404" component={SomethingWentWrongPg} />
           <Redirect from='/*' to='/home/404'/>

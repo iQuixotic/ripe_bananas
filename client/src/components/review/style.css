@@ -1,8 +1,21 @@
-.c-image {
-    height: auto;
-    width: 100%;
+.movie-info {
+    margin-top: 20px;
+    padding-top: 10px;
+    background-color: lightgray;
+    padding-bottom: 10px;
+    border-radius: 10px;
 }
 
-.movie-info {
-    padding-top: 20px;
+.page-br {
+    background-color: #F5C518;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 10px;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.r-image {
+    height: auto;
+    width: 100%;
 }

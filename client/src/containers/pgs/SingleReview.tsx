@@ -1,46 +1,41 @@
-import React from 'react';
-import { connect } from 'react-redux';
-// import axios from 'axios';
-// import { SECRET } from '../../api';
-import { IState, IPageState } from '../../redux/reducers';
-import { dashboardMessageReq } from '../../redux/actions/pages.actions';
+import React from "react";
+import { connect } from "react-redux";
+import { IState } from "../../redux/reducers";
+import { dashboardMessageReq } from "../../redux/actions/pages.actions";
+import MovieInfo from "../../components/review/movieInfo";
+import Line from "../../components/review/line";
+import './style.css';
 
-export interface IPageProps {
-    message: IPageState;
-
-    // Action properties from the dispatcher
-    dashboardMessageReq: () => void;
-    // fourOfourMessageReq: () => void;
-    // landingMessageReq: () => void;
-    // multiReviewMessageReq: () => void;
-    // singleReviewMessageReq: () => void;
-}
+export interface IPageProps {}
 
 export class SingleReviewPg extends React.Component<IPageProps> {
-    constructor(props: any) {
-        super(props);
-    }
-
-
-    render() {
-        return (
-            <div>
-                {this.props.message.message}
-                Hello from the landing page.
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div className="pg-bg">
+        <div className="row">
+          <div className="col-1 col-sm-1 col-md-2 col-lg-2 col-xl-2 display-inline" />
+          <div className="col-10 col-sm-10 col-md-8 col-lg-8 col-xl-8 display-inline">
+            <MovieInfo />
+            <Line />
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = (state: IState) => ({
-    message: state.page
+  message: state.page
 });
 
 const mapDispatchToProps = {
-        dashboardMessageReq:  dashboardMessageReq
-    // movieSearchResolved: movieSearchResolved,
-    // userSubmitRequest: userSubmitRequest,
-    // inputUpdate: inputUpdate
+  dashboardMessageReq: dashboardMessageReq
+  // movieSearchResolved: movieSearchResolved,
+  // userSubmitRequest: userSubmitRequest,
+  // inputUpdate: inputUpdate
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SingleReviewPg);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SingleReviewPg);

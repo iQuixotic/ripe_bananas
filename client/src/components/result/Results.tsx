@@ -8,7 +8,7 @@ export interface IResultsProps {
         movie: IMovieState;
     
         // Action properties from the dispatcher
-    movieSearchResolved: (name: string,  posterUrl: string,) => void;
+    movieSearchResolved: (name: string, plot: string, year: string,  posterUrl: string) => void;
     userSubmitRequest: () => void;
     inputUpdate: (inputValue: string) => void;
     toDashboard: (toDashboard: boolean) => void;
@@ -17,17 +17,28 @@ export interface IResultsProps {
 class Results extends React.Component<IResultsProps> {
 
     createList() {
-        let list;
-        const search = this.props.movie.searchObject;
+        let list = [];
+        for(let i = 0; i < this.props.movie.titleList.length; i++) {
+            list[i] = {
+                index: i,
+                title: this.props.movie.titleList[i],
+                poster: this.props.movie.posterList[i],
+                year: this.props.movie.yearList[i]
+            }
+        }
+        return list;
     }
-
-    // let resultList;
-    // for(int i = 0; i < t)
     
     public render() {
+        const movieArrayList = this.createList();
+        const movieList = Object.values(movieArrayList).map((values, i)  =>
+            <div key={i} className="display-inline">
+                <SearchResult title={values.title} poster={values.poster} year={values.year}/> 
+            </div>          
+        );
         return (
-            <div>
-                
+            <div className="row">
+               {movieList}
             </div>
         );
     }
