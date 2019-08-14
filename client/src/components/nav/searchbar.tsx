@@ -63,7 +63,10 @@ class Searchbar extends React.Component<IMovieProps> {
       let posterList = new Array<string>();
       let yearList = new Array<string>();
       console.log("error: " + payload.data.Error);
-      if (payload.data.Error !== "Movie not found!" && this.props.movie.inputValue.length > 2) {
+      if (
+        payload.data.Error !== "Movie not found!" &&
+        this.props.movie.inputValue.length > 2
+      ) {
         for (let i = 0; i < payload.data.Search.length; i++) {
           titleList.push(payload.data.Search[i].Title);
           posterList.push(payload.data.Search[i].Poster);
@@ -71,7 +74,7 @@ class Searchbar extends React.Component<IMovieProps> {
         }
         this.props.movieSearchObject(titleList, posterList, yearList);
         this.goToDashboard();
-      } else this.goTo404();      
+      } else this.goTo404();
     });
   }
 
