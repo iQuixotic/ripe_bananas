@@ -127,7 +127,7 @@ class MovieInfo extends React.Component<IMovieInfoProps> {
               {this.props.movie.name}
               {` (${this.props.movie.year})`}
             </h1>
-            <hr/>
+            <hr />
             <h3 className="col-12">Plot:</h3>
             <p className="col-12">{this.props.movie.plot}</p>
             <div className="row col-12">
@@ -206,7 +206,7 @@ class MovieInfo extends React.Component<IMovieInfoProps> {
                           className="form-check-input"
                           type="radio"
                           name="inlineRadioOptions"
-                          id="inlineRadio1"
+                          id="inlineRadio2"
                           value="option2"
                         />
                         <label className="form-check-label">2</label>
@@ -217,7 +217,7 @@ class MovieInfo extends React.Component<IMovieInfoProps> {
                           className="form-check-input"
                           type="radio"
                           name="inlineRadioOptions"
-                          id="inlineRadio1"
+                          id="inlineRadio3"
                           value="option3"
                         />
                         <label className="form-check-label">3</label>
@@ -228,7 +228,7 @@ class MovieInfo extends React.Component<IMovieInfoProps> {
                           className="form-check-input"
                           type="radio"
                           name="inlineRadioOptions"
-                          id="inlineRadio1"
+                          id="inlineRadio4"
                           value="option4"
                         />
                         <label className="form-check-label">4</label>
@@ -239,7 +239,7 @@ class MovieInfo extends React.Component<IMovieInfoProps> {
                           className="form-check-input"
                           type="radio"
                           name="inlineRadioOptions"
-                          id="inlineRadio1"
+                          id="inlineRadio5"
                           value="option5"
                         />
                         <label className="form-check-label">5</label>

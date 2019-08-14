@@ -68,7 +68,7 @@ class SearchResult extends React.Component<ISearchResultProps> {
           <div className="col-2 display-inline" />
           <div className="poster-wrapper">
             <button className="signup poster-btn" onClick={() => this.submit()}>
-              <img src={this.getPoster()} className="c-image" alt="Poster" />
+              <img src={this.getPoster()} className="c-image" alt="N/A" />
             </button>
           </div>
         </div>
