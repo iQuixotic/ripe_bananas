@@ -6,12 +6,11 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import {IState } from "../../redux/reducers";
+import { IState } from "../../redux/reducers";
 import Login from "../Modals/Login";
 import Signup from "../Modals/Signup";
 
-export interface ILoginProps {
-}
+export interface ILoginProps {}
 
 /**
  * This component renders the navbar for the website.
@@ -118,11 +117,9 @@ class NavComponent extends React.Component<ILoginProps> {
   }
 }
 
-const mapStateToProps = (state: IState) => ({
-});
+const mapStateToProps = (state: IState) => ({});
 
-const mapDispatchToProps = {
-};
+const mapDispatchToProps = {};
 
 export default connect(
   mapStateToProps,

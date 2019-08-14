@@ -20,38 +20,67 @@ export interface ISignupProps {
   signupLastnameUpdate: (ln: string) => void;
 }
 
+/**
+ * This is the component for the signup modal
+ *
+ * contains all state update methods needed
+ * as well as axios post function
+ */
 class Signup extends React.Component<ISignupProps> {
-
+  /**
+   * updates the email in state
+   * @param e input from email input
+   */
   handleSignupEmailUpdate(e: any) {
     console.log("input changing");
     const value = e.target.value;
     this.props.signupEmailUpdate(value);
   }
 
+  /**
+   * updates the password in state
+   * @param e input from password input
+   */
   handleSignupPasswordUpdate(e: any) {
     console.log("input changing");
     const value = e.target.value;
     this.props.signupPasswordUpdate(value);
   }
 
+  /**
+   * updates the confirm password in state
+   * @param e input from confirm input
+   */
   handleSignupConfirmPassword(e: any) {
     console.log("input changing");
     const value = e.target.value;
     this.props.signupConfirmPassword(value);
   }
 
+  /**
+   * updates the firstname in state
+   * @param e input from firstname input
+   */
   handleSignupFirstnameUpdate(e: any) {
     console.log("input changing");
     const value = e.target.value;
     this.props.signupFirstnameUpdate(value);
   }
 
+  /**
+   * updates the lastname in state
+   * @param e input from lastname input
+   */
   handleSignupLastnameUpdate(e: any) {
     console.log("input changing");
     const value = e.target.value;
     this.props.signupLastnameUpdate(value);
   }
 
+  /**
+   * Contains the axios call to post new
+   * user to the DB
+   */
   signupUser() {
     console.log(this.props.login.firstname);
     console.log(this.props.login.lastname);
@@ -64,6 +93,7 @@ class Signup extends React.Component<ISignupProps> {
     return (
       <div className="modal-dialog modal-dialog-centered" role="document">
         <div className="modal-content">
+          {/* modal header */}
           <div className="modal-header">
             <h3 className="modal-title" id="exampleModalLabel">
               SIGNUP
@@ -77,6 +107,7 @@ class Signup extends React.Component<ISignupProps> {
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
+          {/* modal body */}
           <div className="modal-body">
             <form>
               <div className="form-row">
@@ -143,6 +174,7 @@ class Signup extends React.Component<ISignupProps> {
               Signup
             </button>
           </div>
+          {/* modal footer */}
           <div className="modal-footer">
             {"Already have an account? "}
             <button

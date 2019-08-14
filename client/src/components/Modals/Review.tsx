@@ -6,8 +6,17 @@ export interface IReviewProps {
     movie: IMovieState;
 }
 
+/**
+ * Contains the body for the review modal
+ * 
+ * Has the function that contains axios post call
+ * to post a new review
+ */
 class Review extends React.Component<IReviewProps> {
 
+    /**
+     * post the review to the DB
+     */
   reviewMovie() {
     //post review
   }
@@ -16,6 +25,7 @@ class Review extends React.Component<IReviewProps> {
     return (
       <div className="modal-dialog modal-dialog-centered" role="document">
             <div className="modal-content">
+                {/* modal header */}
               <div className="modal-header">
                 <h3 className="modal-title" id="exampleModalLabel">
                   REVIEW
@@ -29,6 +39,7 @@ class Review extends React.Component<IReviewProps> {
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
+              {/* modal body */}
               <div className="modal-body">
                 <form>
                   <div className="form-group">
@@ -104,6 +115,7 @@ class Review extends React.Component<IReviewProps> {
                     </div>
                   </div>
                 </form>
+                {/* submit button */}
                 <button
                   type="button"
                   className="btn btn-block"
@@ -123,8 +135,7 @@ const mapStateToProps = (state: IState) => ({
     movie: state.movie
 });
 
-const mapDispatchToProps = {
-  
+const mapDispatchToProps = {  
 };
 
 export default connect(

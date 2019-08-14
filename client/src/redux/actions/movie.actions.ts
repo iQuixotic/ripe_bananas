@@ -2,7 +2,7 @@ export const movieTypes = {
   MOVIE_SEARCH_RESOLVED: "MOVIE_SEARCH_RESOLVED",
   USER_SUBMIT_REQUEST: "USER_SUBMIT_REQUEST",
   INPUT_UPDATE: "INPUT_UPDATE",
-  TO_DASHBOARD: "TO_DASHBOARD",
+  TO_RESULTS: "TO_RESULTS",
   TO_REVIEW: "TO_REVIEW",
   TO_404: "TO_404",
   SEARCH_OBJECT: "SEARCH_OBJECT"
@@ -58,12 +58,12 @@ export const toReview = (toReview: boolean) => (dispatch: any) => {
   });
 };
 
-export const toDashboard = (toDashboard: boolean) => (dispatch: any) => {
+export const toResults = (toResults: boolean) => (dispatch: any) => {
   dispatch({
     payload: {
-      toDashboard
+      toResults
     },
-    type: movieTypes.TO_DASHBOARD
+    type: movieTypes.TO_RESULTS
   });
 };
 
