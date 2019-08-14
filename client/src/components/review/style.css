@@ -19,3 +19,32 @@
     height: auto;
     width: 100%;
 }
+
+.movie-info .review,
+.movie-info .name,
+.movie-info .title,
+.movie-info .rating {
+    padding: 15px;
+    font-size: 1.0rem;
+}
+
+.movie-info .rating {
+    font-size: 1.2rem;
+}
+
+.movie-info .title {
+    font-weight: 800;
+    font-size: 1.6rem;
+    border-bottom: 1px solid rgb(122, 122, 122);
+}
+
+.movie-info .review {
+    margin: 0 5%;
+    color: rgb(80, 80, 80);
+}
+
+.movie-info .name {
+    font-weight: 800;
+    font-size: 1.6rem;
+
+}

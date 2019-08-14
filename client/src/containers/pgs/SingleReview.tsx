@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { IState } from "../../redux/reducers";
 import MovieInfo from "../../components/review/movieInfo";
 import Line from "../../components/review/line";
+import { ReviewCard } from "../../components";
 import './style.css';
 
 export interface IPageProps {}
@@ -19,6 +20,16 @@ export class SingleReviewPg extends React.Component<IPageProps> {
             {/* <ResultsList /> */}
             {/* used to produce all the individual review components */}
             {/* use Results and SearchResult for reference */}
+            <ReviewCard
+              className="movie-info"
+              rating="3.4"
+              review="lorem ipsonfdsa lfjdsa;ljfkl;sdajl ;jfl; jfkld;saj 
+              fjsdka;ljf;lasd fkd;lsa ;fdsa  fsdafd sa ;kljfdkls;j;klasdfj
+              fdsafdas fdas ffdsa sdf a fdsafdsa  fdsa "
+              fn="Trey"
+              ln="W"
+              title='Greatest Film Ive ever seeen'
+            />
           </div>
         </div>
       </div>
