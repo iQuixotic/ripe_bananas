@@ -5,8 +5,6 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IState, IMovieState } from "../../redux/reducers";
 import {
-  movieSearchResolved,
-  userSubmitRequest,
   inputUpdate,
   toDashboard,
   movieSearchObject,
@@ -20,15 +18,6 @@ import { Redirect } from "react-router";
 export interface IMovieProps {
   movie: IMovieState;
 
-  // Action properties from the dispatcher
-  movieSearchResolved: (
-    name: string,
-    plot: string,
-    year: string,
-    posterUrl: string
-  ) => void;
-
-  userSubmitRequest: () => void;
   inputUpdate: (inputValue: string) => void;
   toDashboard: (toDashboard: boolean) => void;
   to404: (to404: boolean) => void;
@@ -57,7 +46,6 @@ class Searchbar extends React.Component<IMovieProps> {
   };
 
   submit() {
-    this.props.userSubmitRequest();
     OMDB.getMoviesByTitle(this.props.movie.inputValue).then(payload => {
       let titleList = new Array<string>();
       let posterList = new Array<string>();
@@ -110,11 +98,6 @@ class Searchbar extends React.Component<IMovieProps> {
 
         {/* div contains the two buttons appended to the text input  */}
         <div className="input-group-append" id="button-addon4">
-          {/* <select className="custom-select br0" id="inputGroupSelect04">
-                        <option defaultValue="0">Select</option>
-                        <option value="1">Title</option>
-                        <option value="2">Genre</option>
-                    </select> */}
           <button className="btn" id="rb-btn" onClick={() => this.submit()}>
             <FontAwesomeIcon icon={faSearch} />
           </button>
@@ -129,8 +112,6 @@ const mapStateToProps = (state: IState) => ({
 });
 
 const mapDispatchToProps = {
-  movieSearchResolved: movieSearchResolved,
-  userSubmitRequest: userSubmitRequest,
   inputUpdate: inputUpdate,
   toDashboard: toDashboard,
   to404: to404,

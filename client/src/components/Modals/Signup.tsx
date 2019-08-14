@@ -2,8 +2,6 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { ILoginState, IState } from "../../redux/reducers";
 import {
-  loginEmailUpdate,
-  loginPasswordUpdate,
   signupPasswordUpdate,
   signupEmailUpdate,
   signupConfirmPassword,
@@ -15,8 +13,6 @@ export interface ISignupProps {
   login: ILoginState;
 
   // action porperties
-  loginEmailUpdate: (email: string) => void;
-  loginPasswordUpdate: (password: string) => void;
   signupEmailUpdate: (email: string) => void;
   signupPasswordUpdate: (password: string) => void;
   signupConfirmPassword: (password: string) => void;
@@ -171,8 +167,6 @@ const mapStateToProps = (state: IState) => ({
 });
 
 const mapDispatchToProps = {
-  loginEmailUpdate: loginEmailUpdate,
-  loginPasswordUpdate: loginPasswordUpdate,
   signupEmailUpdate: signupEmailUpdate,
   signupPasswordUpdate: signupPasswordUpdate,
   signupConfirmPassword: signupConfirmPassword,

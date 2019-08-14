@@ -2,26 +2,9 @@ import * as React from "react";
 import SearchResult from "./SearchResult";
 import { connect } from "react-redux";
 import { IState, IMovieState } from "../../redux/reducers";
-import {
-  movieSearchResolved,
-  userSubmitRequest,
-  inputUpdate,
-  to404
-} from "../../redux/actions/movie.actions";
 
 export interface IResultsProps {
   movie: IMovieState;
-
-  // Action properties from the dispatcher
-  movieSearchResolved: (
-    name: string,
-    plot: string,
-    year: string,
-    posterUrl: string
-  ) => void;
-  userSubmitRequest: () => void;
-  inputUpdate: (inputValue: string) => void;
-  to404: (to404: boolean) => void;
 }
 class Results extends React.Component<IResultsProps> {
   /**
@@ -65,10 +48,6 @@ const mapStateToProps = (state: IState) => ({
 });
 
 const mapDispatchToProps = {
-  movieSearchResolved: movieSearchResolved,
-  userSubmitRequest: userSubmitRequest,
-  inputUpdate: inputUpdate,
-  to404: to404
 };
 
 export default connect(

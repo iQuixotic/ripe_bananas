@@ -6,30 +6,11 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { ILoginState, IState } from "../../redux/reducers";
-import {
-  loginEmailUpdate,
-  loginPasswordUpdate,
-  signupPasswordUpdate,
-  signupEmailUpdate,
-  signupConfirmPassword,
-  signupFirstnameUpdate,
-  signupLastnameUpdate
-} from "../../redux/actions/loginsignup.actions";
+import {IState } from "../../redux/reducers";
 import Login from "../Modals/Login";
 import Signup from "../Modals/Signup";
 
 export interface ILoginProps {
-  login: ILoginState;
-
-  // action porperties
-  loginEmailUpdate: (email: string) => void;
-  loginPasswordUpdate: (password: string) => void;
-  signupEmailUpdate: (email: string) => void;
-  signupPasswordUpdate: (password: string) => void;
-  signupConfirmPassword: (password: string) => void;
-  signupFirstnameUpdate: (fn: string) => void;
-  signupLastnameUpdate: (ln: string) => void;
 }
 
 /**
@@ -138,17 +119,9 @@ class NavComponent extends React.Component<ILoginProps> {
 }
 
 const mapStateToProps = (state: IState) => ({
-  login: state.login
 });
 
 const mapDispatchToProps = {
-  loginEmailUpdate: loginEmailUpdate,
-  loginPasswordUpdate: loginPasswordUpdate,
-  signupEmailUpdate: signupEmailUpdate,
-  signupPasswordUpdate: signupPasswordUpdate,
-  signupConfirmPassword: signupConfirmPassword,
-  signupFirstnameUpdate: signupFirstnameUpdate,
-  signupLastnameUpdate: signupLastnameUpdate
 };
 
 export default connect(

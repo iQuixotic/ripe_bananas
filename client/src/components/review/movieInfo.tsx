@@ -2,12 +2,6 @@ import * as React from "react";
 import NoPoster from "./NoPoster.jpg";
 import "./style.css";
 import { IState, IMovieState } from "../../redux/reducers";
-import {
-  movieSearchResolved,
-  userSubmitRequest,
-  inputUpdate,
-  toDashboard
-} from "../../redux/actions/movie.actions";
 import { connect } from "react-redux";
 import Signup from "../Modals/Signup";
 import Login from "../Modals/Login";
@@ -15,17 +9,6 @@ import Review from "../Modals/Review";
 
 export interface IMovieInfoProps {
   movie: IMovieState;
-
-  // Action properties from movie actions
-  movieSearchResolved: (
-    name: string,
-    plot: string,
-    year: string,
-    posterUrl: string
-  ) => void;
-  userSubmitRequest: () => void;
-  inputUpdate: (inputValue: string) => void;
-  toDashboard: (toDashboard: boolean) => void;
 }
 
 class MovieInfo extends React.Component<IMovieInfoProps> {
@@ -114,10 +97,6 @@ const mapStateToProps = (state: IState) => ({
 });
 
 const mapDispatchToProps = {
-  movieSearchResolved: movieSearchResolved,
-  userSubmitRequest: userSubmitRequest,
-  inputUpdate: inputUpdate,
-  toDashboard: toDashboard
 };
 
 export default connect(
