@@ -46,7 +46,7 @@ class Results extends React.Component<IResultsProps> {
 
   public render() {
     const movieArrayList = this.createList();
-    
+
     const movieList = Object.values(movieArrayList).map((values, i) => (
       <div key={i} className="display-inline">
         <SearchResult

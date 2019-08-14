@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { IState } from "../../redux/reducers";
-import { dashboardMessageReq } from "../../redux/actions/pages.actions";
 import MovieInfo from "../../components/review/movieInfo";
 import Line from "../../components/review/line";
 import './style.css';
@@ -25,14 +24,9 @@ export class SingleReviewPg extends React.Component<IPageProps> {
 }
 
 const mapStateToProps = (state: IState) => ({
-  message: state.page
 });
 
 const mapDispatchToProps = {
-  dashboardMessageReq: dashboardMessageReq
-  // movieSearchResolved: movieSearchResolved,
-  // userSubmitRequest: userSubmitRequest,
-  // inputUpdate: inputUpdate
 };
 
 export default connect(
