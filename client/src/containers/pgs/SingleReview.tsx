@@ -16,6 +16,9 @@ export class SingleReviewPg extends React.Component<IPageProps> {
           <div className="col-10 col-sm-10 col-md-8 col-lg-8 col-xl-8 display-inline">
             <MovieInfo />
             <Line />
+            {/* <ResultsList /> */}
+            {/* used to produce all the individual review components */}
+            {/* use Results and SearchResult for reference */}
           </div>
         </div>
       </div>
