@@ -9,7 +9,7 @@ export interface IMovieProps {
     movie: IMovieState;
 
     // Action properties from the dispatcher
-    movieSearchResolved: (name: string,  posterUrl: string,) => void;
+    movieSearchResolved: (name: string, plot: string, year: string,  posterUrl: string) => void;
     userSubmitRequest: () => void;
     inputUpdate: (inputValue: string) => void;
 }
@@ -29,7 +29,9 @@ export class MovieComponent extends React.Component<IMovieProps> {
             console.log('payload', payload.data)
             const name = payload.data.Title;
             const posterUrl = payload.data.Poster;
-            this.props.movieSearchResolved(name, posterUrl);
+            const year = payload.data.Year;
+            const plot = payload.data.Plot;
+            this.props.movieSearchResolved(name,  plot, year, posterUrl);
         })
     }
 

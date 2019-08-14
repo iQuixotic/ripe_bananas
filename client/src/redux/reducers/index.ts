@@ -20,10 +20,15 @@ export interface IPageState {
 
 export interface IMovieState {
     name: string;
+    plot: string;
+    year: string;
     posterUrl: string;
     inputValue: string;
     toDashboard: boolean;
-    searchObject: any;
+    toReview: boolean;
+    titleList: Array<string>;
+    posterList: Array<string>;
+    yearList: Array<string>;
     loadingNewMovie: boolean;
 }
 

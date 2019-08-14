@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 // import { SECRET } from '../../api';
 import { IState, IPageState } from '../../redux/reducers';
 import { dashboardMessageReq } from '../../redux/actions/pages.actions';
+import Results from '../../components/result/Results';
 
 export interface IPageProps {
     message: IPageState;
@@ -17,18 +18,19 @@ export interface IPageProps {
 }
 
 export class MultiReviewPg extends React.Component<IPageProps> {
-    constructor(props: any) {
-        super(props);
-    }
 
 
     render() {
         return (
             <div>
-                {this.props.message.message}
-                Hello from the landing page.
+              <div className="row">
+                <div className="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 display-inline" />
+                <div className="display-inline col-10 col-sm-10 col-md-8 col-lg-8 col-xl-8">
+                  <Results />
+                </div>
+              </div>
             </div>
-        );
+          );
     }
 }
 
