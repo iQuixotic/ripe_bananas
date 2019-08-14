@@ -4,8 +4,6 @@ import { connect } from "react-redux";
 import { IState, IMovieState } from "../../redux/reducers";
 import {
   movieSearchResolved,
-  //   userSubmitRequest,
-  //   inputUpdate,
   toReview
 } from "../../redux/actions/movie.actions";
 import { OMDB } from "../../api";
@@ -27,8 +25,6 @@ export interface ISearchResultProps {
     year: string,
     posterUrl: string
   ) => void;
-  //   userSubmitRequest: () => void;
-  //   inputUpdate: (inputValue: string) => void;
   toReview: (toReview: boolean) => void;
 }
 
@@ -85,8 +81,6 @@ const mapStateToProps = (state: IState) => ({
 
 const mapDispatchToProps = {
   movieSearchResolved: movieSearchResolved,
-  //   userSubmitRequest: userSubmitRequest,
-  //   inputUpdate: inputUpdate,
   toReview: toReview
 };
 

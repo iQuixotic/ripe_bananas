@@ -1,17 +1,9 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { IState } from "../../redux/reducers";
-import {
-  loginEmailUpdate,
-  loginPasswordUpdate,
-  signupPasswordUpdate,
-  signupEmailUpdate,
-  signupConfirmPassword,
-  signupFirstnameUpdate,
-  signupLastnameUpdate
-} from "../../redux/actions/loginsignup.actions";
+import { IState, IMovieState } from "../../redux/reducers";
 
 export interface IReviewProps {
+    movie: IMovieState;
 }
 
 class Review extends React.Component<IReviewProps> {
@@ -128,17 +120,11 @@ class Review extends React.Component<IReviewProps> {
 }
 
 const mapStateToProps = (state: IState) => ({
-  login: state.login
+    movie: state.movie
 });
 
 const mapDispatchToProps = {
-  loginEmailUpdate: loginEmailUpdate,
-  loginPasswordUpdate: loginPasswordUpdate,
-  signupEmailUpdate: signupEmailUpdate,
-  signupPasswordUpdate: signupPasswordUpdate,
-  signupConfirmPassword: signupConfirmPassword,
-  signupFirstnameUpdate: signupFirstnameUpdate,
-  signupLastnameUpdate: signupLastnameUpdate
+  
 };
 
 export default connect(

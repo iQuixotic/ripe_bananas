@@ -3,12 +3,7 @@ import { connect } from "react-redux";
 import { ILoginState, IState } from "../../redux/reducers";
 import {
   loginEmailUpdate,
-  loginPasswordUpdate,
-  signupPasswordUpdate,
-  signupEmailUpdate,
-  signupConfirmPassword,
-  signupFirstnameUpdate,
-  signupLastnameUpdate
+  loginPasswordUpdate
 } from "../../redux/actions/loginsignup.actions";
 
 export interface ILoginProps {
@@ -17,11 +12,6 @@ export interface ILoginProps {
   // action porperties
   loginEmailUpdate: (email: string) => void;
   loginPasswordUpdate: (password: string) => void;
-  signupEmailUpdate: (email: string) => void;
-  signupPasswordUpdate: (password: string) => void;
-  signupConfirmPassword: (password: string) => void;
-  signupFirstnameUpdate: (fn: string) => void;
-  signupLastnameUpdate: (ln: string) => void;
 }
 
 class Login extends React.Component<ILoginProps> {
@@ -47,29 +37,6 @@ class Login extends React.Component<ILoginProps> {
     console.log(this.props.login);
     console.log(this.props.login.loginEmail);
     console.log(this.props.login.loginPassword);
-    // const url = "http://localhost:8080/login"
-    // Axios({
-    //   method: "post",
-    //   url: url,
-    //   data: {
-    //     email: this.props.loginEmailUpdate,
-    //     password: this.props.loginPasswordUpdate
-    //   }
-    // });
-    //-------then catch block to be added in later---------
-    //   .then(res => {
-    //     window.localStorage.setItem('token', res.data.token);
-    //     this.props.history.push("/home");
-    //     return res.data;
-    //   })
-    //   .catch(err => {
-    //     this.setState({
-    //       ...this.state,
-    //       badLogin: true
-    //     });
-    //     console.log(err);
-    //   });
-    //--------------------------------------------------------
   }
 
   public render() {
@@ -146,12 +113,7 @@ const mapStateToProps = (state: IState) => ({
 
 const mapDispatchToProps = {
   loginEmailUpdate: loginEmailUpdate,
-  loginPasswordUpdate: loginPasswordUpdate,
-  signupEmailUpdate: signupEmailUpdate,
-  signupPasswordUpdate: signupPasswordUpdate,
-  signupConfirmPassword: signupConfirmPassword,
-  signupFirstnameUpdate: signupFirstnameUpdate,
-  signupLastnameUpdate: signupLastnameUpdate
+  loginPasswordUpdate: loginPasswordUpdate
 };
 
 export default connect(
