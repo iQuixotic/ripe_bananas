@@ -9,7 +9,8 @@ import {
   userSubmitRequest,
   inputUpdate,
   toDashboard,
-  movieSearchObject
+  movieSearchObject,
+  to404
 } from "../../redux/actions/movie.actions";
 import { connect } from "react-redux";
 // import axios from 'axios'
@@ -26,9 +27,12 @@ export interface IMovieProps {
     year: string,
     posterUrl: string
   ) => void;
+
   userSubmitRequest: () => void;
   inputUpdate: (inputValue: string) => void;
   toDashboard: (toDashboard: boolean) => void;
+  to404: (to404: boolean) => void;
+
   movieSearchObject: (
     titleList: string[],
     posterList: string[],
@@ -58,16 +62,22 @@ class Searchbar extends React.Component<IMovieProps> {
       let titleList = new Array<string>();
       let posterList = new Array<string>();
       let yearList = new Array<string>();
-      if (payload.data.length > 0) {
+      console.log("error: " + payload.data.Error);
+      if (payload.data.Error !== "Movie not found!") {
         for (let i = 0; i < payload.data.Search.length; i++) {
           titleList.push(payload.data.Search[i].Title);
           posterList.push(payload.data.Search[i].Poster);
           yearList.push(payload.data.Search[i].Year);
         }
+        this.props.movieSearchObject(titleList, posterList, yearList);
+        this.goToDashboard();
       }
-      this.props.movieSearchObject(titleList, posterList, yearList);
-      this.goToDashboard();
+      this.goTo404();
     });
+  }
+
+  goTo404() {
+    this.props.to404(!this.props.movie.to404);
   }
 
   goToDashboard() {
@@ -79,6 +89,11 @@ class Searchbar extends React.Component<IMovieProps> {
       this.goToDashboard();
       return <Redirect to="/results" />;
     }
+
+    if (this.props.movie.to404 === true) {
+        this.goTo404();
+        return <Redirect to="/home/404" />;
+      }
 
     return (
       <div className="searchbar input-group mb-3 col-12">
@@ -116,6 +131,7 @@ const mapDispatchToProps = {
   userSubmitRequest: userSubmitRequest,
   inputUpdate: inputUpdate,
   toDashboard: toDashboard,
+  to404: to404,
   movieSearchObject: movieSearchObject
 };
 

@@ -8,7 +8,6 @@ import {
   inputUpdate,
   to404
 } from "../../redux/actions/movie.actions";
-import { Redirect } from "react-router";
 
 export interface IResultsProps {
   movie: IMovieState;
@@ -24,8 +23,6 @@ export interface IResultsProps {
   inputUpdate: (inputValue: string) => void;
   to404: (to404: boolean) => void;
 }
-
-const redirect = () => <Redirect to="/home/404" />;
 class Results extends React.Component<IResultsProps> {
   /**
    *
@@ -34,7 +31,6 @@ class Results extends React.Component<IResultsProps> {
     let list = [];
     let listIndex = 0;
     for (let i = 0; i < this.props.movie.titleList.length; i++) {
-      console.log(this.props.movie.posterList[i]);
       if (this.props.movie.posterList[i] !== "N/A") {
         list.push({
           index: listIndex,
