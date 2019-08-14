@@ -4,6 +4,7 @@ export const movieTypes = {
   INPUT_UPDATE: "INPUT_UPDATE",
   TO_DASHBOARD: "TO_DASHBOARD",
   TO_REVIEW: "TO_REVIEW",
+  TO_404: "TO_404",
   SEARCH_OBJECT: "SEARCH_OBJECT"
 };
 
@@ -38,6 +39,16 @@ export const movieSearchResolved = (
     type: movieTypes.MOVIE_SEARCH_RESOLVED
   });
 };
+
+export const to404 = (to404: boolean) => (dispatch: any) => {
+  dispatch({
+    payload: {
+      to404
+    },
+    type: movieTypes.TO_404
+  });
+};
+
 export const toReview = (toReview: boolean) => (dispatch: any) => {
   dispatch({
     payload: {

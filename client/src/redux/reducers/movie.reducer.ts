@@ -8,6 +8,7 @@ const initialState = {
   inputValue: "",
   toDashboard: false,
   toReview: false,
+  to404: false,
   loadingNewMovie: false,
   titleList: ["empty"],
   posterList: ["empty"],
@@ -26,6 +27,12 @@ export const movieReducer = (state = initialState, action: any) => {
       return {
         ...state,
         toReview: action.payload.toReview
+      };
+
+      case movieTypes.TO_404:
+      return {
+        ...state,
+        to404: action.payload.to404
       };
 
     case movieTypes.SEARCH_OBJECT:
