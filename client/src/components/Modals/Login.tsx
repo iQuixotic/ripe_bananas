@@ -9,18 +9,33 @@ import {
 export interface ILoginProps {
   login: ILoginState;
 
-  // action porperties
+  // action properties
   loginEmailUpdate: (email: string) => void;
   loginPasswordUpdate: (password: string) => void;
 }
 
+/**
+ * This is the component for the login modal
+ *
+ * contains all state update methods needed
+ * as well as axios post function
+ */
 class Login extends React.Component<ILoginProps> {
+  
+  /**
+   * updates the email in state
+   * @param e input from email input
+   */
   handleLoginEmailUpdate(e: any) {
     console.log("input changing");
     const value = e.target.value;
     this.props.loginEmailUpdate(value);
   }
 
+  /**
+   * Updates password in state
+   * @param e input from password input
+   */
   handleLoginPasswordUpdate(e: any) {
     console.log("input changing");
     const value = e.target.value;
@@ -30,11 +45,8 @@ class Login extends React.Component<ILoginProps> {
   /**
    * Contains the axios call to the backend to log in a user using
    * the email and password they type in the login modal
-   * @param em email used to login user
-   * @param pw password used to login a user
    */
   loginUser() {
-    console.log(this.props.login);
     console.log(this.props.login.loginEmail);
     console.log(this.props.login.loginPassword);
   }
@@ -43,6 +55,7 @@ class Login extends React.Component<ILoginProps> {
     return (
       <div className="modal-dialog modal-dialog-centered" role="document">
         <div className="modal-content">
+          {/* modal header */}
           <div className="modal-header">
             <h3 className="modal-title" id="exampleModalLabel">
               LOGIN
@@ -56,6 +69,7 @@ class Login extends React.Component<ILoginProps> {
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
+          {/* modal body */}
           <div className="modal-body">
             <form>
               <div className="form-group">
@@ -88,6 +102,7 @@ class Login extends React.Component<ILoginProps> {
               Login
             </button>
           </div>
+          {/* modal footer */}
           <div className="modal-footer">
             Don't have an account?
             <button

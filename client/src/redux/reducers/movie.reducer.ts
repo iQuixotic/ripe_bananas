@@ -6,7 +6,7 @@ const initialState = {
   year: "",
   posterUrl: "",
   inputValue: "",
-  toDashboard: false,
+  toResults: false,
   toReview: false,
   to404: false,
   loadingNewMovie: false,
@@ -17,10 +17,10 @@ const initialState = {
 
 export const movieReducer = (state = initialState, action: any) => {
   switch (action.type) {
-    case movieTypes.TO_DASHBOARD:
+    case movieTypes.TO_RESULTS:
       return {
         ...state,
-        toDashboard: action.payload.toDashboard
+        toResults: action.payload.toResults
       };
 
     case movieTypes.TO_REVIEW:
