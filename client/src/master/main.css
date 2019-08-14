@@ -2,6 +2,15 @@
   font-size: 10px;
 } */
 
+body {
+ overflow-x: hidden;
+}
+
+.flex-contain {
+  display: flex;
+}
+
+
 @media screen and (max-width: 600px) {
     .navigation .nav-img {
       min-height: 20vh;
