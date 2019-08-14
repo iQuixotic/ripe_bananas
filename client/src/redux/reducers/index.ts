@@ -26,6 +26,7 @@ export interface IMovieState {
     inputValue: string;
     toDashboard: boolean;
     toReview: boolean;
+    to404: boolean;
     titleList: Array<string>;
     posterList: Array<string>;
     yearList: Array<string>;

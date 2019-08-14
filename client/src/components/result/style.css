@@ -17,7 +17,7 @@
 
 .poster-btn {
     margin: 0;
-    padding: 1px;
+    padding: 0;
     background-color: black;
     transition: transform .2s;
 }
@@ -25,3 +25,8 @@
 .poster-btn:hover {
     transform: scale(1.5);
 }
+
+/* #obj-image {
+    width: 150px;
+    height: 225px;
+} */

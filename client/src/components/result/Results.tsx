@@ -6,8 +6,9 @@ import {
   movieSearchResolved,
   userSubmitRequest,
   inputUpdate,
-  toDashboard
+  to404
 } from "../../redux/actions/movie.actions";
+import { Redirect } from "react-router";
 
 export interface IResultsProps {
   movie: IMovieState;
@@ -21,15 +22,19 @@ export interface IResultsProps {
   ) => void;
   userSubmitRequest: () => void;
   inputUpdate: (inputValue: string) => void;
-  toDashboard: (toDashboard: boolean) => void;
+  to404: (to404: boolean) => void;
 }
 
+const redirect = () => <Redirect to="/home/404" />;
 class Results extends React.Component<IResultsProps> {
+  /**
+   *
+   */
   createList() {
     let list = [];
     let listIndex = 0;
     for (let i = 0; i < this.props.movie.titleList.length; i++) {
-        console.log(this.props.movie.posterList[i]);
+      console.log(this.props.movie.posterList[i]);
       if (this.props.movie.posterList[i] !== "N/A") {
         list.push({
           index: listIndex,
@@ -45,6 +50,7 @@ class Results extends React.Component<IResultsProps> {
 
   public render() {
     const movieArrayList = this.createList();
+    
     const movieList = Object.values(movieArrayList).map((values, i) => (
       <div key={i} className="display-inline">
         <SearchResult
@@ -66,7 +72,7 @@ const mapDispatchToProps = {
   movieSearchResolved: movieSearchResolved,
   userSubmitRequest: userSubmitRequest,
   inputUpdate: inputUpdate,
-  toDashboard: toDashboard
+  to404: to404
 };
 
 export default connect(
