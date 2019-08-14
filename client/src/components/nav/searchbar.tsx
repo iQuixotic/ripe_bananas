@@ -71,8 +71,7 @@ class Searchbar extends React.Component<IMovieProps> {
         }
         this.props.movieSearchObject(titleList, posterList, yearList);
         this.goToDashboard();
-      }
-      this.goTo404();
+      } else this.goTo404();      
     });
   }
 
@@ -91,9 +90,9 @@ class Searchbar extends React.Component<IMovieProps> {
     }
 
     if (this.props.movie.to404 === true) {
-        this.goTo404();
-        return <Redirect to="/home/404" />;
-      }
+      this.goTo404();
+      return <Redirect to="/home/404" />;
+    }
 
     return (
       <div className="searchbar input-group mb-3 col-12">
