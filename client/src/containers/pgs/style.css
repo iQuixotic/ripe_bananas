@@ -10,3 +10,18 @@
   margin-right: 4%;
   padding: 0;
 }
+
+.pg-bg {
+  background-color: #141414;
+  min-height: 70vh;
+}
+
+.center-message {
+  margin: auto;
+  width: auto;
+  color: #F5C518;
+  padding: 15%;
+  font-size: 30px;
+  text-align: center;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+}

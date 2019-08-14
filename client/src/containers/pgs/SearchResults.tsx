@@ -1,20 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-// import axios from 'axios';
-// import { SECRET } from '../../api';
-import { IState, IPageState } from "../../redux/reducers";
-import { dashboardMessageReq } from "../../redux/actions/pages.actions";
+import { IState } from "../../redux/reducers";
 import Results from "../../components/result/Results";
 
 export interface IPageProps {
-  message: IPageState;
-
-  // Action properties from the dispatcher
-  dashboardMessageReq: () => void;
-  // fourOfourMessageReq: () => void;
-  // landingMessageReq: () => void;
-  // multiReviewMessageReq: () => void;
-  // singleReviewMessageReq: () => void;
 }
 
 export class SearchResults extends React.Component<IPageProps> {
@@ -33,14 +22,9 @@ export class SearchResults extends React.Component<IPageProps> {
 }
 
 const mapStateToProps = (state: IState) => ({
-  message: state.page
 });
 
 const mapDispatchToProps = {
-  dashboardMessageReq: dashboardMessageReq
-  // movieSearchResolved: movieSearchResolved,
-  // userSubmitRequest: userSubmitRequest,
-  // inputUpdate: inputUpdate
 };
 
 export default connect(
