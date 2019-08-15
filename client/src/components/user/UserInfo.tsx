@@ -19,7 +19,7 @@ class UserInfo extends React.Component<IMovieInfoProps> {
         <div className="float-right">
           <div className="dropdown">
             <button className="dropbtn btn" id="rb-btn">
-              <FontAwesomeIcon icon={faUserCog} />
+              <FontAwesomeIcon icon={faUserCog} pointer-events='none' />
             </button>
             <div className="dropdown-content">
               <button

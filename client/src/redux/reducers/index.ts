@@ -19,11 +19,11 @@ export interface ILoginState {
 }
 
 export interface IReviewState {
-    rating: number;
-    title: string;
-    body: string,
-    firstName: string,
-    lastName: string,
+    reviewRating: string;
+    reviewTitle: string;
+    reviewBody: string,
+    reviewFirstname: string,
+    reviewLastname: string,
     isOpen: boolean
 }
 

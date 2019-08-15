@@ -67,6 +67,7 @@ class SearchResult extends React.Component<ISearchResultProps> {
                 className="c-image"
                 alt="poster"
               />
+              <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
             </button>
           </div>
         </div>

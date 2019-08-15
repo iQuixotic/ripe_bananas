@@ -8,7 +8,7 @@ export const reviewTypes = {
   SINGLE_REVIEW_ISOPEN: "SINGLE_REVIEW_ISOPEN"
 };
 
-export const reviewRatingUpdate = (reviewRating: number) => (dispatch: any) => {
+export const reviewRatingUpdate = (reviewRating: string) => (dispatch: any) => {
   dispatch({
     payload: {
       reviewRating

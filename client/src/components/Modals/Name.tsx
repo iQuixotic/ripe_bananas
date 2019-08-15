@@ -42,6 +42,15 @@ class Name extends React.Component<IUserProps> {
   }
 
   /**
+   * allows user to search by using enter
+   */
+  handleKeyPress = (event: any) => {
+    if (event.key === "Enter") {
+      this.updateName();
+    }
+  };
+
+  /**
    * Contains the axios call to post new
    * user info to the DB
    */
@@ -103,6 +112,7 @@ class Name extends React.Component<IUserProps> {
               className="btn btn-block"
               id="rb-btn"
               onClick={() => this.updateName()}
+              onKeyPress={this.handleKeyPress}
             >
               Update
             </button>
@@ -118,8 +128,8 @@ const mapStateToProps = (state: IState) => ({
 });
 
 const mapDispatchToProps = {
-    userFirstnameUpdate: userFirstnameUpdate,
-    userLastnameUpdate: userLastnameUpdate
+  userFirstnameUpdate: userFirstnameUpdate,
+  userLastnameUpdate: userLastnameUpdate
 };
 
 export default connect(
