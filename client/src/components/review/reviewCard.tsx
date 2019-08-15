@@ -15,7 +15,7 @@ const ReviewCard: React.FunctionComponent<any> = (props) => {
             {props.review}
         </div>
         <div className="name">
-            {props.fn} {props.ln}
+            {props.fn} {props.ln.substring(0,1)}
         </div>
     </div>
   );

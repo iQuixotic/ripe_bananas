@@ -5,6 +5,7 @@ import { pageReducer } from "./page.reducer";
 import { loginReducer } from './loginsignup.reducer';
 import { reviewLastNameUpdate } from "../actions/dbReviews.actions";
 import { dbReviewsReducer} from "../reducers/dbReviews.reducer";
+import { userReducer } from "./user.reducer";
 
 export interface ILoginState {
     loginEmail: string;
@@ -22,6 +23,14 @@ export interface IReviewState {
     body: string,
     firstName: string,
     lastName: string,
+}
+
+export interface IUserState {    
+  userFirstname: string,
+  userLastname: string,
+  userEmail: string,
+  userPassword: string,
+  userConfirmPassword:string
 }
 
 export interface IPageState {
@@ -51,6 +60,7 @@ export interface IState {
     movie: IMovieState
     login: ILoginState
     reviews: IReviewState
+    user: IUserState
 }
 
 export const state = combineReducers<IState>({
@@ -58,5 +68,6 @@ export const state = combineReducers<IState>({
   page: pageReducer,
   movie: movieReducer,
   login: loginReducer,
-  reviews: dbReviewsReducer
+  reviews: dbReviewsReducer,
+  user: userReducer
 })
