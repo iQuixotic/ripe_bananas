@@ -5,18 +5,35 @@ const initialState = {
   userLastname: "Jong-Un",
   userEmail: "IDaBest@dictators.com",
   userPassword: "",
-  userConfirmPassword:"",
+  userConfirmPassword: "",
   validPassword: true
 };
 
 export const userReducer = (state = initialState, action: any) => {
   switch (action.type) {
-
+    case userTypes.LOGIN_USER:
+      return {
+        ...state,
+        userFirstname: action.payload.userFirstname,
+        userLastname: action.payload.userLastname,
+        userEmail: action.payload.userEmail,
+        userPassword: action.payload.userPassword,
+        userConfirmPassword: ""
+      };
+    case userTypes.LOGOUT_USER:
+      return {
+        ...state,
+        userFirstname: "",
+        userLastname: "",
+        userEmail: "",
+        userPassword: "",
+        userConfirmPassword: ""
+      };
     case userTypes.USER_VALIDATE_PASSWORD:
-        return {
-            ...state,
-            validPassword: action.payload.validPassword
-        }
+      return {
+        ...state,
+        validPassword: action.payload.validPassword
+      };
     case userTypes.USER_FIRSTNAME_UPDATE:
       return {
         ...state,

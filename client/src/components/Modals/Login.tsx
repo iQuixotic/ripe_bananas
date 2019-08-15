@@ -1,17 +1,20 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { ILoginState, IState } from "../../redux/reducers";
+import { ILoginState, IState, IUserState } from "../../redux/reducers";
 import {
   loginEmailUpdate,
   loginPasswordUpdate
 } from "../../redux/actions/loginsignup.actions";
+import { userLogin } from "../../redux/actions/users.actions";
 
 export interface ILoginProps {
   login: ILoginState;
+  user: IUserState;
 
   // action properties
   loginEmailUpdate: (email: string) => void;
   loginPasswordUpdate: (password: string) => void;
+  userLogin: (firstname: string, lastname: string, email: string, password: string) => void;
 }
 
 /**
@@ -48,6 +51,10 @@ class Login extends React.Component<ILoginProps> {
   loginUser() {
     console.log(this.props.login.loginEmail);
     console.log(this.props.login.loginPassword);
+    //axios call to get user
+
+    //update current user
+    // userLogin(this.payload.data.firstname, this.payload.data.lastname, this.payload.data.email, this.payload.data.password);
   }
 
   public render() {
@@ -77,6 +84,7 @@ class Login extends React.Component<ILoginProps> {
                 </label>
                 <input
                   type="email"
+                  placeholder="user_email@email.com"
                   className="form-control form-field"
                   onChange={e => this.handleLoginEmailUpdate(e)}
                   required
@@ -88,6 +96,7 @@ class Login extends React.Component<ILoginProps> {
                 </label>
                 <input
                   type="password"
+                  placeholder="Password"
                   className="form-control form-field"
                   onChange={e => this.handleLoginPasswordUpdate(e)}
                   required
@@ -97,7 +106,8 @@ class Login extends React.Component<ILoginProps> {
             <button
               type="button"
               className="btn btn-block"
-              id="rb-btn"
+              id="rb-btn"              
+              data-dismiss="modal"
               onClick={() => this.loginUser()}
             >
               Login
@@ -108,7 +118,7 @@ class Login extends React.Component<ILoginProps> {
             Don't have an account?
             <button
               className="signup btn"
-              id="rb-btn"
+              id="mf-btn"
               data-dismiss="modal"
               data-toggle="modal"
               data-target="#signup-modal"
@@ -124,12 +134,14 @@ class Login extends React.Component<ILoginProps> {
 }
 
 const mapStateToProps = (state: IState) => ({
-  login: state.login
+  login: state.login,
+  user: state.user
 });
 
 const mapDispatchToProps = {
   loginEmailUpdate: loginEmailUpdate,
-  loginPasswordUpdate: loginPasswordUpdate
+  loginPasswordUpdate: loginPasswordUpdate,
+  userLogin: userLogin
 };
 
 export default connect(

@@ -1,9 +1,33 @@
 .form-field:invalid{
-    background-color: rgb(223, 153, 153);
+    border-color: red;
+    border-radius: 5px;
+}
+
+.form-field:valid{
+    border-color: green;
+    border-radius: 5px;
 }
 
 .pass-mess {
     text-align: center;
     padding-bottom: 10px;
     color: red;
+}
+
+
+
+.pass-mess-2 {
+    text-align: center;
+    padding-bottom: 10px;
+    color: green;
+}
+
+.form-red{
+    border-color: red !important;
+    border-radius: 5px !important;
+}
+
+.form-green{
+    border-color: green !important;
+    border-radius: 5px !important;
 }

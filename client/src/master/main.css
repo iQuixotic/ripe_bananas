@@ -44,3 +44,14 @@ body {
     color: #1030AD;
   }
 
+  
+
+#mf-btn {
+  background-color: lightgray;
+  color: #1030AD;
+}
+
+#mf-btn:hover {
+  color: #6ea3ff;
+}
+

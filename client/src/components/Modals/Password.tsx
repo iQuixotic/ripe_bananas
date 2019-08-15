@@ -7,7 +7,7 @@ import {
   userValidPassword
 } from "../../redux/actions/users.actions";
 import "./style.css";
-import 'react-inputs-validation/lib/react-inputs-validation.min.css';
+import "react-inputs-validation/lib/react-inputs-validation.min.css";
 
 export interface IUserProps {
   user: IUserState;
@@ -30,7 +30,6 @@ class Password extends React.Component<IUserProps> {
    * @param e input from password input
    */
   handleUserPasswordUpdate(e: any) {
-    console.log("input changing");
     const value = e.target.value;
     this.props.userPasswordUpdate(value);
   }
@@ -40,7 +39,6 @@ class Password extends React.Component<IUserProps> {
    * @param e input from confirm input
    */
   handleUserConfirmPassword(e: any) {
-    console.log("input changing");
     const value = e.target.value;
     this.props.userConfirmPassword(value);
     this.validatePassword(value);
@@ -53,7 +51,7 @@ class Password extends React.Component<IUserProps> {
   }
 
   /**
-   * Contains the axios call to post new
+   * Contains the axios call to update
    * user to the DB
    */
   updatePassword() {
@@ -89,23 +87,23 @@ class Password extends React.Component<IUserProps> {
                     <strong>Password</strong>
                   </label>
                   <input
-                    className="form-field"
-                    id="password"
-                    name="password"
+                    className="form-control form-field"
                     type="password"
                     onChange={e => this.handleUserPasswordUpdate(e)}
                     placeholder="Password"
                     required
                   />
                 </div>
-                <div className="form-group col-6">
+                <div className="form-group col-6 form control">
                   <label>
                     <strong>Confirm Password</strong>
                   </label>
                   <input
-                    className="form-field"
-                    id="password-two"
-                    name="password-two"
+                    className={
+                      this.props.user.validPassword
+                        ? "form-red form-control"
+                        : "form-green form-control"
+                    }
                     type="password"
                     onChange={e => this.handleUserConfirmPassword(e)}
                     placeholder="Verify Password"
@@ -113,10 +111,23 @@ class Password extends React.Component<IUserProps> {
                   />
                 </div>
               </div>
-              <div className="pass-mess" hidden={!this.props.user.validPassword}>Passwords must match</div>
+              <div
+                className="pass-mess"
+                hidden={!this.props.user.validPassword}
+              >
+                Passwords must match
+              </div>
+              
+              <div
+                className="pass-mess-2"
+                hidden={this.props.user.validPassword}
+              >
+                Passwords match!
+              </div>
             </form>
             <button
               type="submit"
+              data-dismiss="modal"
               className="btn btn-block"
               id="rb-btn"
               onClick={() => this.updatePassword()}

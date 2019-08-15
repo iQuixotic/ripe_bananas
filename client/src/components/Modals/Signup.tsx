@@ -1,6 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { ILoginState, IState } from "../../redux/reducers";
+import { ILoginState, IState, IUserState } from "../../redux/reducers";
 import {
   signupPasswordUpdate,
   signupEmailUpdate,
@@ -9,17 +9,22 @@ import {
   signupLastnameUpdate,
   signupValid
 } from "../../redux/actions/loginsignup.actions";
+import { userLogin } from "../../redux/actions/users.actions";
 
 export interface ISignupProps {
   login: ILoginState;
+  user: IUserState;
 
-  // action porperties
+  // signup action properties
   signupEmailUpdate: (email: string) => void;
   signupPasswordUpdate: (password: string) => void;
   signupConfirmPassword: (password: string) => void;
   signupFirstnameUpdate: (fn: string) => void;
   signupLastnameUpdate: (ln: string) => void;
   signupValid: (validPassword: boolean) => void;
+
+  // user action properties
+  userLogin: (firstname: string, lastname: string, email: string, password: string) => void;
 }
 
 const valid = false;
@@ -100,6 +105,7 @@ class Signup extends React.Component<ISignupProps> {
     console.log(this.props.login.signupPassword);
     console.log(this.props.login.confirmPassword);
     this.props.signupValid(invalid);
+    this.props.userLogin(this.props.login.firstname,this.props.login.lastname,this.props.login.signupEmail,this.props.login.signupPassword)
   }
 
   public render() {
@@ -130,6 +136,7 @@ class Signup extends React.Component<ISignupProps> {
                   </label>
                   <input
                     type="text"
+                    placeholder="John"
                     className="form-control form-field"
                     onChange={e => this.handleSignupFirstnameUpdate(e)}
                     required
@@ -141,6 +148,7 @@ class Signup extends React.Component<ISignupProps> {
                   </label>
                   <input
                     type="text"
+                    placeholder="Doe"
                     className="form-control form-field"
                     onChange={e => this.handleSignupLastnameUpdate(e)}
                     required
@@ -153,6 +161,7 @@ class Signup extends React.Component<ISignupProps> {
                 </label>
                 <input
                   type="email"
+                  placeholder="user_email@email.com"
                   className="form-control form-field"
                   onChange={e => this.handleSignupEmailUpdate(e)}
                   required
@@ -165,6 +174,7 @@ class Signup extends React.Component<ISignupProps> {
                   </label>
                   <input
                     type="password"
+                    placeholder="Password"
                     className="form-control form-field"
                     onChange={e => this.handleSignupPasswordUpdate(e)}
                     required
@@ -176,7 +186,12 @@ class Signup extends React.Component<ISignupProps> {
                   </label>
                   <input
                     type="password"
-                    className="form-control form-field"
+                    placeholder="Verify password"
+                    className={
+                      this.props.login.signupValid
+                        ? "form-red form-control"
+                        : "form-green form-control"
+                    }
                     onChange={e => this.handleSignupConfirmPassword(e)}
                     required
                   />
@@ -185,10 +200,18 @@ class Signup extends React.Component<ISignupProps> {
               <div className="pass-mess" hidden={!this.props.login.signupValid}>
                 Passwords must match
               </div>
+              
+              <div
+                className="pass-mess-2"
+                hidden={this.props.login.signupValid}
+              >
+                Passwords match!
+              </div>
             </form>
             <button
               type="button"
-              className="btn btn-block"
+              className="btn btn-block"              
+              data-dismiss="modal"
               id="rb-btn"
               onClick={() => this.signupUser()}
               disabled={this.props.login.signupValid}
@@ -203,7 +226,7 @@ class Signup extends React.Component<ISignupProps> {
               type="submit"
               className="signup btn"
               data-dismiss="modal"
-              id="rb-btn"
+              id="mf-btn"
               data-toggle="modal"
               data-target="#login-modal"
             >
@@ -218,7 +241,8 @@ class Signup extends React.Component<ISignupProps> {
 }
 
 const mapStateToProps = (state: IState) => ({
-  login: state.login
+  login: state.login,
+  user: state.user
 });
 
 const mapDispatchToProps = {
@@ -227,7 +251,8 @@ const mapDispatchToProps = {
   signupConfirmPassword: signupConfirmPassword,
   signupFirstnameUpdate: signupFirstnameUpdate,
   signupLastnameUpdate: signupLastnameUpdate,
-  signupValid: signupValid
+  signupValid: signupValid,
+  userLogin: userLogin
 };
 
 export default connect(
