@@ -4,6 +4,7 @@ const ReviewCard: React.FunctionComponent<any> = (props) => {
   return(
     <div className={props.className}>
         <div className="flex-contain">
+
             <div className="rating">
                 {props.rating}
             </div>
@@ -11,7 +12,8 @@ const ReviewCard: React.FunctionComponent<any> = (props) => {
                 {props.title}
             </div>
         </div>
-        <div className="review">
+        <button onClick={props.openClose}>Expand/Shrink</button>
+        <div className={props.reviewOpen ? "review" : "review-closed"}>
             {props.review}
         </div>
         <div className="name">

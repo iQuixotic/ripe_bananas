@@ -23,6 +23,7 @@ export interface IReviewState {
     body: string,
     firstName: string,
     lastName: string,
+    isOpen: boolean
 }
 
 export interface IUserState {    

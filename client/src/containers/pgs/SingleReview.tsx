@@ -6,19 +6,16 @@ import Line from "../../components/review/line";
 import { ReviewCard } from "../../components";
 import './style.css';
 import { singleReviewMessageReq } from "../../redux/actions/pages.actions";
+import { singleReviewIsOpen } from "../../redux/actions/dbReviews.actions";
 
 
 export interface IReviewProps {
   reviews: IReviewState;
-
-  // Action properties from the dispatcher
   singleReviewMessageReq: () => void;
-  // fourOfourMessageReq: () => void;
-  // landingMessageReq: () => void;
-  // multiReviewMessageReq: () => void;
-  // singleReviewMessageReq: () => void;
+  singleReivewIsOpen: (bool: boolean) => void;
 }
 
+let isOpen = true;
 export class SingleReviewPg extends React.Component<IReviewProps> {
   render() {
     return (
@@ -33,6 +30,8 @@ export class SingleReviewPg extends React.Component<IReviewProps> {
             {/* use Results and SearchResult for reference */}
             <ReviewCard
               className="movie-info"
+              openClose={() => this.props.singleReivewIsOpen(this.props.reviews.isOpen)}
+              reviewOpen={this.props.reviews.isOpen}
               rating={this.props.reviews.rating}
               review={this.props.reviews.body}
               fn={this.props.reviews.firstName}
@@ -51,6 +50,7 @@ const mapStateToProps = (state: IState) => ({
 });
 
 const mapDispatchToProps = {
+  singleReivewIsOpen: singleReviewIsOpen,
   singleReviewMessageReq: singleReviewMessageReq
 }
 
