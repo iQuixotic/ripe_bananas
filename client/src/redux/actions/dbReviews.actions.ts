@@ -4,7 +4,8 @@ export const reviewTypes = {
   REVIEW_BODY_UPDATE: "REVIEW_BODY_UPDATE",
   REVIEW_FIRSTNAME_UPDATE: "REVIEW_FIRSTNAME_UPDATE",
   REVIEW_LASTNAME_UPDATE: "REVIEW_LASTNAME_UPDATE",
-  SINGLE_REVIEW_REQ: "SINGLE_REVIEW_REQ"
+  SINGLE_REVIEW_REQ: "SINGLE_REVIEW_REQ",
+  SINGLE_REVIEW_ISOPEN: "SINGLE_REVIEW_ISOPEN"
 };
 
 export const reviewRatingUpdate = (reviewRating: number) => (dispatch: any) => {
@@ -60,5 +61,14 @@ export const singleReviewMessageReq = () => (dispatch: any) => {
   dispatch({
     payload: {},
     type: reviewTypes.SINGLE_REVIEW_REQ
+  });
+};
+
+export const singleReviewIsOpen = (isOpen: boolean) => (dispatch: any) => {
+  dispatch({
+    payload: {
+      isOpen
+    },
+    type: reviewTypes.SINGLE_REVIEW_ISOPEN
   });
 };

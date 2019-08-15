@@ -35,7 +35,6 @@
 .movie-info .title {
     font-weight: 800;
     font-size: 1.6rem;
-    border-bottom: 1px solid rgb(122, 122, 122);
 }
 
 .movie-info .review {
@@ -43,8 +42,30 @@
     color: rgb(80, 80, 80);
 }
 
+.movie-info .review-closed {
+    max-height: 40px;
+    overflow: hidden;
+    margin: 0 5%;
+    color: rgb(80, 80, 80);
+}
+
+
 .movie-info .name {
-    font-weight: 800;
     font-size: 1.6rem;
 
+}
+
+.movie-info .ex-shr {
+    color: rgb(40, 131, 28);
+}
+
+.movie-info .ex-shr-closed {
+    color: rgb(255, 0, 0);
+}
+
+.movie-info .ex-shr-closed,
+.movie-info .ex-shr {
+    width: 100%;
+    border: none;
+    border-top: 1px solid rgb(122, 122, 122);
 }
