@@ -21,7 +21,6 @@ export interface ISignupProps {
  * as well as axios post function
  */
 class Password extends React.Component<ISignupProps> {
-
   /**
    * updates the password in state
    * @param e input from password input
