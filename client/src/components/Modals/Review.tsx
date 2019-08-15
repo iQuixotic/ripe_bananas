@@ -122,7 +122,8 @@ class Review extends React.Component<IReviewProps> {
             </form>
             {/* submit button */}
             <button
-              type="button"
+              type="button"              
+              data-dismiss="modal"
               className="btn btn-block"
               id="rb-btn"
               onClick={() => this.reviewMovie()}

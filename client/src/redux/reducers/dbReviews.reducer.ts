@@ -1,7 +1,7 @@
 import {reviewTypes} from '../actions/dbReviews.actions';
 
 const initialState = {
-    rating: '4',
+    rating: 4,
     title: 'batman',
     body: 'it was bleh',
     firstName:'amy',

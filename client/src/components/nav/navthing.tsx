@@ -6,11 +6,16 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { IState } from "../../redux/reducers";
+import { IState, IUserState } from "../../redux/reducers";
 import Login from "../Modals/Login";
 import Signup from "../Modals/Signup";
+import { logoutUser } from "../../redux/actions/users.actions";
 
-export interface ILoginProps {}
+export interface ILoginProps {
+  user: IUserState;
+
+  logoutUser: () => void;
+}
 
 /**
  * This component renders the navbar for the website.
@@ -86,7 +91,12 @@ class NavComponent extends React.Component<ILoginProps> {
                   login
                 </button>
               </li>
-              {/* <li className="p5px"><button className="btn" id="rb-btn">Logout</button></li> */}
+              <li className="p5px">
+                <button className="btn" id="rb-btn"
+                onClick={() => this.props.logoutUser()}>
+                  Logout
+                </button>
+              </li>
             </ul>
           </div>
         </nav>
@@ -117,9 +127,13 @@ class NavComponent extends React.Component<ILoginProps> {
   }
 }
 
-const mapStateToProps = (state: IState) => ({});
+const mapStateToProps = (state: IState) => ({
+  user: state.user
+});
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  logoutUser: logoutUser
+};
 
 export default connect(
   mapStateToProps,

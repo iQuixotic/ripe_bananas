@@ -19,7 +19,7 @@ export interface ILoginState {
 }
 
 export interface IReviewState {
-    rating: string;
+    rating: number;
     title: string;
     body: string,
     firstName: string,
