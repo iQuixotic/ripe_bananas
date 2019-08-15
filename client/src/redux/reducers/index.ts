@@ -3,6 +3,8 @@ import { combineReducers } from "redux";
 import { movieReducer } from "./movie.reducer";
 import { pageReducer } from "./page.reducer";
 import { loginReducer } from './loginsignup.reducer';
+import { reviewLastNameUpdate } from "../actions/dbReviews.actions";
+import { dbReviewsReducer} from "../reducers/dbReviews.reducer";
 
 export interface ILoginState {
     loginEmail: string;
@@ -12,6 +14,14 @@ export interface ILoginState {
     firstname: string;
     lastname: string;
     confirmPassword: string;
+}
+
+export interface IReviewState {
+    rating: string;
+    title: string;
+    body: string,
+    firstName: string,
+    lastName: string,
 }
 
 export interface IPageState {
@@ -40,11 +50,13 @@ export interface IState {
    page: IPageState
     movie: IMovieState
     login: ILoginState
+    reviews: IReviewState
 }
 
 export const state = combineReducers<IState>({
   //  clicker: clickerReducer,
   page: pageReducer,
   movie: movieReducer,
-  login: loginReducer
+  login: loginReducer,
+  reviews: dbReviewsReducer
 })

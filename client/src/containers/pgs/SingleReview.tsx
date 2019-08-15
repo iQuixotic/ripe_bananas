@@ -1,14 +1,25 @@
 import React from "react";
 import { connect } from "react-redux";
-import { IState } from "../../redux/reducers";
+import { IState, IReviewState } from "../../redux/reducers";
 import MovieInfo from "../../components/review/movieInfo";
 import Line from "../../components/review/line";
 import { ReviewCard } from "../../components";
 import './style.css';
+import { singleReviewMessageReq } from "../../redux/actions/pages.actions";
 
-export interface IPageProps {}
 
-export class SingleReviewPg extends React.Component<IPageProps> {
+export interface IReviewProps {
+  reviews: IReviewState;
+
+  // Action properties from the dispatcher
+  singleReviewMessageReq: () => void;
+  // fourOfourMessageReq: () => void;
+  // landingMessageReq: () => void;
+  // multiReviewMessageReq: () => void;
+  // singleReviewMessageReq: () => void;
+}
+
+export class SingleReviewPg extends React.Component<IReviewProps> {
   render() {
     return (
       <div className="pg-bg">
@@ -22,13 +33,11 @@ export class SingleReviewPg extends React.Component<IPageProps> {
             {/* use Results and SearchResult for reference */}
             <ReviewCard
               className="movie-info"
-              rating="3.4"
-              review="lorem ipsonfdsa lfjdsa;ljfkl;sdajl ;jfl; jfkld;saj 
-              fjsdka;ljf;lasd fkd;lsa ;fdsa  fsdafd sa ;kljfdkls;j;klasdfj
-              fdsafdas fdas ffdsa sdf a fdsafdsa  fdsa "
-              fn="Trey"
-              ln="W"
-              title='Greatest Film Ive ever seeen'
+              rating={this.props.reviews.rating}
+              review={this.props.reviews.body}
+              fn={this.props.reviews.firstName}
+              ln={this.props.reviews.lastName}
+              title={this.props.reviews.title}
             />
           </div>
         </div>
@@ -38,12 +47,15 @@ export class SingleReviewPg extends React.Component<IPageProps> {
 }
 
 const mapStateToProps = (state: IState) => ({
+  reviews: state.reviews
 });
 
 const mapDispatchToProps = {
-};
+  singleReviewMessageReq: singleReviewMessageReq
+}
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(SingleReviewPg);
+
