@@ -1,0 +1,9 @@
+.form-field:invalid{
+    background-color: rgb(223, 153, 153);
+}
+
+.pass-mess {
+    text-align: center;
+    padding-bottom: 10px;
+    color: red;
+}

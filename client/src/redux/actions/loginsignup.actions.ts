@@ -6,8 +6,19 @@ export const loginTypes = {
     SIGNUP_CONFIRM_PASSWORD: 'SIGNUP_CONFIRM_PASSWORD',
     SIGNUP_FIRSTNAME_UPDATE: 'SIGNUP_FIRSTNAME_UPDATE',
     SIGNUP_LASTNAME_UPDATE: 'SIGNUP_LASTNAME_UPDATE',
-    LOGIN_USER: 'LOGIN_USER'
+    LOGIN_USER: 'LOGIN_USER',
+    SIGNUP_VALIDATE: 'SIGNUP_VALIDATE'
 };
+
+export const signupValid = 
+    (signupValid: boolean) => (dispatch: any) => {
+        dispatch({
+            payload: {
+                signupValid
+            },
+            type: loginTypes.SIGNUP_VALIDATE
+        });
+    }
 
 export const loginEmailUpdate = 
     (loginEmail: string) => (dispatch: any) => {

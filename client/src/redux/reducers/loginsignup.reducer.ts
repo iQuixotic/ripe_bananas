@@ -7,11 +7,17 @@ const initialState = {
     signupPassword: '',
     firstname: '',
     lastname: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    signupValid: true
 }
 
 export const loginReducer = (state = initialState, action: any) => {
     switch (action.type) {
+        case loginTypes.SIGNUP_VALIDATE:
+            return {
+                ...state,
+                signupValid: action.payload.signupValid
+            }
         case loginTypes.LOGIN_USER:
             return {
                 ...state,

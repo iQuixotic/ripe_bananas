@@ -21,7 +21,6 @@ export interface ILoginProps {
  * as well as axios post function
  */
 class Login extends React.Component<ILoginProps> {
-  
   /**
    * updates the email in state
    * @param e input from email input
@@ -77,9 +76,10 @@ class Login extends React.Component<ILoginProps> {
                   <strong>Email address</strong>
                 </label>
                 <input
-                  type="text"
-                  className="form-control"
+                  type="email"
+                  className="form-control form-field"
                   onChange={e => this.handleLoginEmailUpdate(e)}
+                  required
                 />
               </div>
               <div className="form-group">
@@ -88,8 +88,9 @@ class Login extends React.Component<ILoginProps> {
                 </label>
                 <input
                   type="password"
-                  className="form-control"
+                  className="form-control form-field"
                   onChange={e => this.handleLoginPasswordUpdate(e)}
+                  required
                 />
               </div>
             </form>

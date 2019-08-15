@@ -1,15 +1,22 @@
 import { userTypes } from "../actions/users.actions";
 
 const initialState = {
-  userFirstname: "",
-  userLastname: "",
-  userEmail: "",
+  userFirstname: "Kim",
+  userLastname: "Jong-Un",
+  userEmail: "IDaBest@dictators.com",
   userPassword: "",
-  userConfirmPassword:""
+  userConfirmPassword:"",
+  validPassword: true
 };
 
 export const userReducer = (state = initialState, action: any) => {
   switch (action.type) {
+
+    case userTypes.USER_VALIDATE_PASSWORD:
+        return {
+            ...state,
+            validPassword: action.payload.validPassword
+        }
     case userTypes.USER_FIRSTNAME_UPDATE:
       return {
         ...state,
