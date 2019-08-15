@@ -43,6 +43,14 @@
     color: rgb(80, 80, 80);
 }
 
+.movie-info .review-closed {
+    height: 40px;
+    overflow: hidden;
+    margin: 0 5%;
+    color: rgb(80, 80, 80);
+}
+
+
 .movie-info .name {
     font-weight: 800;
     font-size: 1.6rem;
