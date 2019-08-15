@@ -1,9 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { IUserState, IState } from "../../redux/reducers";
-import {
-  userEmailUpdate
-} from "../../redux/actions/users.actions";
+import { userEmailUpdate } from "../../redux/actions/users.actions";
 import "./style.css";
 import "react-inputs-validation/lib/react-inputs-validation.min.css";
 
@@ -30,6 +28,15 @@ class Email extends React.Component<IUserProps> {
     const value = e.target.value;
     this.props.userEmailUpdate(value);
   }
+
+  /**
+   * allows user to search by using enter
+   */
+  handleKeyPress = (event: any) => {
+    if (event.key === "Enter") {
+      this.updateEmail();
+    }
+  };
 
   /**
    * Contains the axios call to update
@@ -81,6 +88,7 @@ class Email extends React.Component<IUserProps> {
               className="btn btn-block"
               id="rb-btn"
               onClick={() => this.updateEmail()}
+              onKeyPress={this.handleKeyPress}
             >
               Update
             </button>

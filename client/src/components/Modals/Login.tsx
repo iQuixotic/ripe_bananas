@@ -14,7 +14,12 @@ export interface ILoginProps {
   // action properties
   loginEmailUpdate: (email: string) => void;
   loginPasswordUpdate: (password: string) => void;
-  userLogin: (firstname: string, lastname: string, email: string, password: string) => void;
+  userLogin: (
+    firstname: string,
+    lastname: string,
+    email: string,
+    password: string
+  ) => void;
 }
 
 /**
@@ -43,6 +48,15 @@ class Login extends React.Component<ILoginProps> {
     const value = e.target.value;
     this.props.loginPasswordUpdate(value);
   }
+
+  /**
+   * allows user to search by using enter
+   */
+  handleKeyPress = (event: any) => {
+    if (event.key === "Enter") {
+      this.loginUser();
+    }
+  };
 
   /**
    * Contains the axios call to the backend to log in a user using
@@ -106,7 +120,7 @@ class Login extends React.Component<ILoginProps> {
             <button
               type="button"
               className="btn btn-block"
-              id="rb-btn"              
+              id="rb-btn"
               data-dismiss="modal"
               onClick={() => this.loginUser()}
             >
@@ -122,6 +136,7 @@ class Login extends React.Component<ILoginProps> {
               data-dismiss="modal"
               data-toggle="modal"
               data-target="#signup-modal"
+              onKeyPress={this.handleKeyPress}
             >
               {" "}
               Sign up here

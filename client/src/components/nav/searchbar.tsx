@@ -122,7 +122,7 @@ class Searchbar extends React.Component<IMovieProps> {
         {/* div contains the two buttons appended to the text input  */}
         <div className="input-group-append" id="button-addon4">
           <button className="btn" id="rb-btn" onClick={() => this.submit()}>
-            <FontAwesomeIcon icon={faSearch} />
+            <FontAwesomeIcon icon={faSearch} pointer-events='none' />
           </button>
         </div>
       </div>

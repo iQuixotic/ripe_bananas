@@ -9,7 +9,6 @@
 .page-br {
     background-color: #F5C518;
     margin-top: 20px;
-    margin-bottom: 20px;
     height: 10px;
     width: 100%;
     border-radius: 5px;
@@ -29,12 +28,12 @@
 }
 
 .movie-info .rating {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }
 
 .movie-info .title {
     font-weight: 800;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
 }
 
 .movie-info .review {
@@ -57,15 +56,28 @@
 
 .movie-info .ex-shr {
     color: rgb(40, 131, 28);
+    background-color: lightgray;
 }
 
 .movie-info .ex-shr-closed {
     color: rgb(255, 0, 0);
+    background-color: lightgray;
+}
+
+
+.movie-info .ex-shr:hover {
+    color: rgb(40, 131, 28);
+    background-color: darkgray;
+}
+
+.movie-info .ex-shr-closed:hover {
+    color: rgb(255, 0, 0);
+    background-color: darkgray;
 }
 
 .movie-info .ex-shr-closed,
 .movie-info .ex-shr {
     width: 100%;
     border: none;
-    border-top: 1px solid rgb(122, 122, 122);
+    /* border-top: 1px solid rgb(122, 122, 122); */
 }

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { IState} from "../../redux/reducers";
 import Line from "../../components/review/line";
 import UserInfo from "../../components/user/UserInfo";
+import Reviews from "../../components/review/Reviews";
 
 export interface IProfilePgProps {
 }
@@ -19,6 +20,7 @@ export class ProfilePg extends React.Component<IProfilePgProps> {
             {/* <ResultsList /> */}
             {/* used to produce all the individual review components */}
             {/* use Results and SearchResult for reference */}
+            <Reviews />
           </div>
         </div>
       </div>

@@ -3,10 +3,10 @@ import { connect } from "react-redux";
 import { IState, IReviewState } from "../../redux/reducers";
 import MovieInfo from "../../components/review/movieInfo";
 import Line from "../../components/review/line";
-import { ReviewCard } from "../../components";
 import './style.css';
 import { singleReviewMessageReq } from "../../redux/actions/pages.actions";
 import { singleReviewIsOpen } from "../../redux/actions/dbReviews.actions";
+import Reviews from "../../components/review/Reviews";
 
 
 export interface IReviewProps {
@@ -15,7 +15,7 @@ export interface IReviewProps {
   singleReivewIsOpen: (bool: boolean) => void;
 }
 
-let isOpen = true;
+// let isOpen = true;
 export class SingleReviewPg extends React.Component<IReviewProps> {
   render() {
     return (
@@ -28,16 +28,17 @@ export class SingleReviewPg extends React.Component<IReviewProps> {
             {/* <ResultsList /> */}
             {/* used to produce all the individual review components */}
             {/* use Results and SearchResult for reference */}
-            <ReviewCard
+            {/* <ReviewCard
               className="movie-info"
               openClose={() => this.props.singleReivewIsOpen(this.props.reviews.isOpen)}
               reviewOpen={this.props.reviews.isOpen}
-              rating={this.props.reviews.rating}
-              review={this.props.reviews.body}
-              fn={this.props.reviews.firstName}
-              ln={this.props.reviews.lastName}
-              title={this.props.reviews.title}
-            />
+              rating={this.props.reviews.reviewRating}
+              review={this.props.reviews.reviewBody}
+              fn={this.props.reviews.reviewFirstname}
+              ln={this.props.reviews.reviewLastname}
+              title={this.props.reviews.reviewTitle}
+            /> */}
+            <Reviews />
           </div>
         </div>
       </div>

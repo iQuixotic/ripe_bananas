@@ -1,9 +1,21 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { IState, IMovieState } from "../../redux/reducers";
+import { IState, IReviewState } from "../../redux/reducers";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import "./style.css";
+import {
+  reviewRatingUpdate,
+  reviewTitleUpdate,
+  reviewBodyUpdate
+} from "../../redux/actions/dbReviews.actions";
 
 export interface IReviewProps {
-  movie: IMovieState;
+  reviews: IReviewState;
+
+  reviewRatingUpdate: (reviewRating: string) => void;
+  reviewTitleUpdate: (reviewTitle: string) => void;
+  reviewBodyUpdate: (reviewBody: string) => void;
 }
 
 /**
@@ -13,10 +25,39 @@ export interface IReviewProps {
  * to post a new review
  */
 class Review extends React.Component<IReviewProps> {
+  updateRating(e: any) {
+    const value = e.target.value;
+    console.log(e.target.value);
+    this.props.reviewRatingUpdate(value);
+    // console.log(this.props.reviews.rating);
+  }
+
+  updateTitle(e: any) {
+    const value = e.target.value;
+    console.log(e.target.value);
+    this.props.reviewTitleUpdate(value);
+    // console.log(this.props.reviews.rating);
+  }
+
+  /**
+   * allows user to search by using enter
+   */
+  handleKeyPress = (event: any) => {
+    if (event.key === "Enter") {
+      this.createReview();
+    }
+  };
+
+  updateBody(e: any) {
+    const value = e.target.value;
+    console.log(e.target.value);
+    this.props.reviewBodyUpdate(value);
+    // console.log(this.props.reviews.rating);
+  }
   /**
    * post the review to the DB
    */
-  reviewMovie() {
+  createReview() {
     //post review
   }
 
@@ -45,7 +86,11 @@ class Review extends React.Component<IReviewProps> {
                 <label>
                   <strong>Title</strong>
                 </label>
-                <input type="text" className="form-control" />
+                <input
+                  type="text"
+                  className="form-control"
+                  onChange={e => this.updateTitle(e)}
+                />
               </div>
               <div className="form-group">
                 <label>
@@ -55,6 +100,7 @@ class Review extends React.Component<IReviewProps> {
                   className="form-control"
                   id="exampleFormControlTextarea1"
                   rows={3}
+                  onChange={e => this.updateBody(e)}
                 />
               </div>
               <div className="form-group">
@@ -62,71 +108,62 @@ class Review extends React.Component<IReviewProps> {
                   <strong>Rating</strong>
                 </label>
                 <div className="form-row">
-                  {/* 1 star */}
-                  <div className="form-check form-check-inline">
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      name="inlineRadioOptions"
-                      id="inlineRadio1"
-                      value={1}
-                    />
-                    <label className="form-check-label">1</label>
-                  </div>
-                  {/* 2 star */}
-                  <div className="form-check form-check-inline">
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      name="inlineRadioOptions"
-                      id="inlineRadio2"
-                      value={2}
-                    />
-                    <label className="form-check-label">2</label>
-                  </div>
-                  {/* 3 star */}
-                  <div className="form-check form-check-inline">
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      name="inlineRadioOptions"
-                      id="inlineRadio3"
-                      value={3}
-                    />
-                    <label className="form-check-label">3</label>
-                  </div>
-                  {/* 4 star */}
-                  <div className="form-check form-check-inline">
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      name="inlineRadioOptions"
-                      id="inlineRadio4"
-                      value={4}
-                    />
-                    <label className="form-check-label">4</label>
-                  </div>
-                  {/* 5 star */}
-                  <div className="form-check form-check-inline">
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      name="inlineRadioOptions"
-                      id="inlineRadio5"
-                      value={5}
-                    />
-                    <label className="form-check-label">5</label>
+                  <div
+                    className="btn-group btn-group-toggle"
+                    data-toggle="buttons"
+                  >
+                    <button
+                      type="button"
+                      className="btn star"
+                      value="1"
+                      onClick={e => this.updateRating(e)}
+                    >
+                      <FontAwesomeIcon icon={faStar} pointer-events="none" />
+                    </button>
+                    <button
+                      type="button"
+                      className="btn star"
+                      value="2"
+                      onClick={e => this.updateRating(e)}
+                    >
+                      <FontAwesomeIcon icon={faStar} pointer-events="none" />
+                    </button>
+                    <button
+                      type="button"
+                      className="btn star"
+                      value="3"
+                      onClick={e => this.updateRating(e)}
+                    >
+                      <FontAwesomeIcon icon={faStar} pointer-events="none" />
+                    </button>
+                    <button
+                      type="button"
+                      className="btn star"
+                      value="4"
+                      onClick={e => this.updateRating(e)}
+                    >
+                      <FontAwesomeIcon icon={faStar} pointer-events="none" />
+                    </button>
+                    <button
+                      type="button"
+                      className="btn star"
+                      value="5"
+                      onClick={e => this.updateRating(e)}
+                    >
+                      <FontAwesomeIcon icon={faStar} pointer-events="none" />
+                    </button>
                   </div>
                 </div>
               </div>
             </form>
             {/* submit button */}
             <button
-              type="button"              
+              type="button"
               data-dismiss="modal"
               className="btn btn-block"
               id="rb-btn"
-              onClick={() => this.reviewMovie()}
+              onClick={() => this.createReview()}
+              onKeyPress={this.handleKeyPress}
             >
               Post Review
             </button>
@@ -138,10 +175,14 @@ class Review extends React.Component<IReviewProps> {
 }
 
 const mapStateToProps = (state: IState) => ({
-  movie: state.movie
+  reviews: state.reviews
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  reviewRatingUpdate: reviewRatingUpdate,
+  reviewTitleUpdate: reviewTitleUpdate,
+  reviewBodyUpdate: reviewBodyUpdate
+};
 
 export default connect(
   mapStateToProps,
