@@ -3,7 +3,19 @@ export const userTypes = {
   USER_LASTNAME_UPDATE: "USER_LASTNAME_UPDATE",
   USER_EMAIL_UPDATE: "USER_EAMIL_UPDATE",
   USER_PASSWORD_UPDATE: "USER_PASSWORD_UPDATE",
-  USER_PASSWORD_CONFIRM: "USER_PASSWORD_CONFIRM"
+  USER_PASSWORD_CONFIRM: "USER_PASSWORD_CONFIRM",
+  USER_VALIDATE_PASSWORD: "USER_VALIDATE_PASSWORD"
+};
+
+export const userValidPassword = (validPassword: boolean) => (
+  dispatch: any
+) => {
+  dispatch({
+    payload: {
+      validPassword
+    },
+    type: userTypes.USER_VALIDATE_PASSWORD
+  });
 };
 
 export const userFirstnameUpdate = (userFirstname: string) => (

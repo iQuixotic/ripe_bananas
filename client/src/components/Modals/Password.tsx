@@ -1,44 +1,55 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { ILoginState, IState } from "../../redux/reducers";
+import { IUserState, IState } from "../../redux/reducers";
 import {
-  signupPasswordUpdate,
-  signupConfirmPassword
-} from "../../redux/actions/loginsignup.actions";
+  userPasswordUpdate,
+  userPasswordConfirm,
+  userValidPassword
+} from "../../redux/actions/users.actions";
+import "./style.css";
+import 'react-inputs-validation/lib/react-inputs-validation.min.css';
 
-export interface ISignupProps {
-  login: ILoginState;
+export interface IUserProps {
+  user: IUserState;
 
   // action porperties
-  signupPasswordUpdate: (password: string) => void;
-  signupConfirmPassword: (password: string) => void;
+  userPasswordUpdate: (password: string) => void;
+  userConfirmPassword: (password: string) => void;
+  userValidPassword: (validPassword: boolean) => void;
 }
 
 /**
- * This is the component for the signup modal
+ * This is the component for the User modal
  *
  * contains all state update methods needed
  * as well as axios post function
  */
-class Password extends React.Component<ISignupProps> {
+class Password extends React.Component<IUserProps> {
   /**
    * updates the password in state
    * @param e input from password input
    */
-  handleSignupPasswordUpdate(e: any) {
+  handleUserPasswordUpdate(e: any) {
     console.log("input changing");
     const value = e.target.value;
-    this.props.signupPasswordUpdate(value);
+    this.props.userPasswordUpdate(value);
   }
 
   /**
    * updates the confirm password in state
    * @param e input from confirm input
    */
-  handleSignupConfirmPassword(e: any) {
+  handleUserConfirmPassword(e: any) {
     console.log("input changing");
     const value = e.target.value;
-    this.props.signupConfirmPassword(value);
+    this.props.userConfirmPassword(value);
+    this.validatePassword(value);
+  }
+
+  validatePassword(password: string) {
+    if (password === this.props.user.userPassword && password !== "") {
+      this.props.userValidPassword(false);
+    } else this.props.userValidPassword(true);
   }
 
   /**
@@ -46,8 +57,9 @@ class Password extends React.Component<ISignupProps> {
    * user to the DB
    */
   updatePassword() {
-    console.log(this.props.login.signupPassword);
-    console.log(this.props.login.confirmPassword);
+    console.log(this.props.user.userPassword);
+    console.log(this.props.user.userConfirmPassword);
+    this.props.userValidPassword(true);
   }
 
   public render() {
@@ -77,9 +89,13 @@ class Password extends React.Component<ISignupProps> {
                     <strong>Password</strong>
                   </label>
                   <input
+                    className="form-field"
+                    id="password"
+                    name="password"
                     type="password"
-                    className="form-control"
-                    onChange={e => this.handleSignupPasswordUpdate(e)}
+                    onChange={e => this.handleUserPasswordUpdate(e)}
+                    placeholder="Password"
+                    required
                   />
                 </div>
                 <div className="form-group col-6">
@@ -87,18 +103,24 @@ class Password extends React.Component<ISignupProps> {
                     <strong>Confirm Password</strong>
                   </label>
                   <input
+                    className="form-field"
+                    id="password-two"
+                    name="password-two"
                     type="password"
-                    className="form-control"
-                    onChange={e => this.handleSignupConfirmPassword(e)}
+                    onChange={e => this.handleUserConfirmPassword(e)}
+                    placeholder="Verify Password"
+                    required
                   />
                 </div>
               </div>
+              <div className="pass-mess" hidden={!this.props.user.validPassword}>Passwords must match</div>
             </form>
             <button
-              type="button"
+              type="submit"
               className="btn btn-block"
               id="rb-btn"
               onClick={() => this.updatePassword()}
+              disabled={this.props.user.validPassword}
             >
               Update
             </button>
@@ -110,12 +132,13 @@ class Password extends React.Component<ISignupProps> {
 }
 
 const mapStateToProps = (state: IState) => ({
-  login: state.login
+  user: state.user
 });
 
 const mapDispatchToProps = {
-  signupPasswordUpdate: signupPasswordUpdate,
-  signupConfirmPassword: signupConfirmPassword
+  userPasswordUpdate: userPasswordUpdate,
+  userConfirmPassword: userPasswordConfirm,
+  userValidPassword: userValidPassword
 };
 
 export default connect(

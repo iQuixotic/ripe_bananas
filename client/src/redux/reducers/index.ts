@@ -3,7 +3,7 @@ import { combineReducers } from "redux";
 import { movieReducer } from "./movie.reducer";
 import { pageReducer } from "./page.reducer";
 import { loginReducer } from './loginsignup.reducer';
-import { reviewLastNameUpdate } from "../actions/dbReviews.actions";
+// import { reviewLastNameUpdate } from "../actions/dbReviews.actions";
 import { dbReviewsReducer} from "../reducers/dbReviews.reducer";
 import { userReducer } from "./user.reducer";
 
@@ -15,6 +15,7 @@ export interface ILoginState {
     firstname: string;
     lastname: string;
     confirmPassword: string;
+    signupValid: boolean;
 }
 
 export interface IReviewState {
@@ -31,7 +32,8 @@ export interface IUserState {
   userLastname: string,
   userEmail: string,
   userPassword: string,
-  userConfirmPassword:string
+  userConfirmPassword:string,
+  validPassword: boolean,
 }
 
 export interface IPageState {

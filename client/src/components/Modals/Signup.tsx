@@ -6,7 +6,8 @@ import {
   signupEmailUpdate,
   signupConfirmPassword,
   signupFirstnameUpdate,
-  signupLastnameUpdate
+  signupLastnameUpdate,
+  signupValid
 } from "../../redux/actions/loginsignup.actions";
 
 export interface ISignupProps {
@@ -18,7 +19,11 @@ export interface ISignupProps {
   signupConfirmPassword: (password: string) => void;
   signupFirstnameUpdate: (fn: string) => void;
   signupLastnameUpdate: (ln: string) => void;
+  signupValid: (validPassword: boolean) => void;
 }
+
+const valid = false;
+const invalid = true;
 
 /**
  * This is the component for the signup modal
@@ -55,6 +60,13 @@ class Signup extends React.Component<ISignupProps> {
     console.log("input changing");
     const value = e.target.value;
     this.props.signupConfirmPassword(value);
+    this.validatePassword(value);
+  }
+
+  validatePassword(password: string) {
+    if (password === this.props.login.signupPassword && password !== "") {
+      this.props.signupValid(valid);
+    } else this.props.signupValid(invalid);
   }
 
   /**
@@ -87,6 +99,7 @@ class Signup extends React.Component<ISignupProps> {
     console.log(this.props.login.signupEmail);
     console.log(this.props.login.signupPassword);
     console.log(this.props.login.confirmPassword);
+    this.props.signupValid(invalid);
   }
 
   public render() {
@@ -117,8 +130,9 @@ class Signup extends React.Component<ISignupProps> {
                   </label>
                   <input
                     type="text"
-                    className="form-control"
+                    className="form-control form-field"
                     onChange={e => this.handleSignupFirstnameUpdate(e)}
+                    required
                   />
                 </div>
                 <div className="form-group col-6">
@@ -127,8 +141,9 @@ class Signup extends React.Component<ISignupProps> {
                   </label>
                   <input
                     type="text"
-                    className="form-control"
+                    className="form-control form-field"
                     onChange={e => this.handleSignupLastnameUpdate(e)}
+                    required
                   />
                 </div>
               </div>
@@ -138,8 +153,9 @@ class Signup extends React.Component<ISignupProps> {
                 </label>
                 <input
                   type="email"
-                  className="form-control"
+                  className="form-control form-field"
                   onChange={e => this.handleSignupEmailUpdate(e)}
+                  required
                 />
               </div>
               <div className="form-row">
@@ -149,8 +165,9 @@ class Signup extends React.Component<ISignupProps> {
                   </label>
                   <input
                     type="password"
-                    className="form-control"
+                    className="form-control form-field"
                     onChange={e => this.handleSignupPasswordUpdate(e)}
+                    required
                   />
                 </div>
                 <div className="form-group col-6">
@@ -159,10 +176,14 @@ class Signup extends React.Component<ISignupProps> {
                   </label>
                   <input
                     type="password"
-                    className="form-control"
+                    className="form-control form-field"
                     onChange={e => this.handleSignupConfirmPassword(e)}
+                    required
                   />
                 </div>
+              </div>
+              <div className="pass-mess" hidden={!this.props.login.signupValid}>
+                Passwords must match
               </div>
             </form>
             <button
@@ -170,6 +191,7 @@ class Signup extends React.Component<ISignupProps> {
               className="btn btn-block"
               id="rb-btn"
               onClick={() => this.signupUser()}
+              disabled={this.props.login.signupValid}
             >
               Signup
             </button>
@@ -178,6 +200,7 @@ class Signup extends React.Component<ISignupProps> {
           <div className="modal-footer">
             {"Already have an account? "}
             <button
+              type="submit"
               className="signup btn"
               data-dismiss="modal"
               id="rb-btn"
@@ -203,7 +226,8 @@ const mapDispatchToProps = {
   signupPasswordUpdate: signupPasswordUpdate,
   signupConfirmPassword: signupConfirmPassword,
   signupFirstnameUpdate: signupFirstnameUpdate,
-  signupLastnameUpdate: signupLastnameUpdate
+  signupLastnameUpdate: signupLastnameUpdate,
+  signupValid: signupValid
 };
 
 export default connect(
