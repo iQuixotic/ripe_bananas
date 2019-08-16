@@ -26,7 +26,8 @@ export class SingleReviewPg extends React.Component<any> {
 
   // componentDidMount = () => {
   //   const myProps: any = this.props;
-  //   this.props.movieInfo(myProps.match.params.title, myProps.match.params.year);
+  //   // console.log(myProps.match.params.title, myProps.match.params.year)
+  //   // () => this.props.movieInfo(myProps.match.params.title, myProps.match.params.year);
   // };
 
   render() {
