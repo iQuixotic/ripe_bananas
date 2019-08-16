@@ -21,10 +21,14 @@ export interface IMovieInfoProps {
     plot: string,
     year: string,
     posterUrl: string
-  ) => void;
-}
-
-class MovieInfo extends React.Component<IMovieInfoProps> {
+    ) => void;
+  }
+  
+  class MovieInfo extends React.Component<IMovieInfoProps> {
+    
+    // componentDidMount = () => {
+    //   this.getMovie();
+    // }
 
   getPoster(): string {
     if (this.props.movie.posterUrl === "N/A") {
