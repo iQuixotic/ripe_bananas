@@ -1,57 +1,60 @@
+@import url("https://fonts.googleapis.com/css?family=Cairo&display=swap");
+
 /* * {
   font-size: 10px;
 } */
 
 body {
- overflow-x: hidden;
+  overflow-x: hidden;
+  font-family: "Cairo", sans-serif !important;
 }
 
 .flex-contain {
   display: flex;
 }
 
-
 @media screen and (max-width: 600px) {
-    .navigation .nav-img {
-      min-height: 20vh;
-    }
-  
-    .navigation #title {
-      font-size: 25px;
-    }
-  
-    .navigation .logo {
-      height: 25px;
-    }
+  .navigation .nav-img {
+    min-height: 20vh;
+  }
 
-    .search-results .result-margin{
-      margin-right: 0;
-    }
+  .navigation #title {
+    font-size: 25px;
+  }
+
+  .navigation .logo {
+    height: 25px;
+  }
+
+  .search-results .result-margin {
+    margin-right: 0;
+  }
+
+  .navigation .brand {
+    margin: auto;
+  }
 }
 
 #rb-btn {
-    background-color: #1030AD;
-    color: white;
-  }
-  
-  #rb-btn:hover {
-    background-color: #1030AD;
-    color: #F5C518;
-  }
-  
-  #rb-btn:focus {
-    background-color: #F5C518;
-    color: #1030AD;
-  }
+  background-color: #1030ad;
+  color: white;
+}
 
-  
+#rb-btn:hover {
+  background-color: #1030ad;
+  color: #f5c518;
+}
+
+#rb-btn:focus {
+  background-color: #f5c518;
+  color: #1030ad;
+}
 
 #mf-btn {
   background-color: lightgray;
-  color: #1030AD;
+  color: #1030ad;
 }
 
 #mf-btn:hover {
   color: #6ea3ff;
 }
-

@@ -52,7 +52,7 @@ class SearchResult extends React.Component<ISearchResultProps> {
   public render() {
     if (this.props.movie.toReview === true) {
       this.goToReview();
-      return <Redirect to="/review" />;
+      return <Redirect to={`/review/${this.props.movie.name}/${this.props.movie.year}`} />;
     }
 
     return (
@@ -67,7 +67,6 @@ class SearchResult extends React.Component<ISearchResultProps> {
                 className="c-image"
                 alt="poster"
               />
-              <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
             </button>
           </div>
         </div>

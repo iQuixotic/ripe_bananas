@@ -6,9 +6,22 @@ import { connect } from "react-redux";
 import Signup from "../Modals/Signup";
 import Login from "../Modals/Login";
 import Review from "../Modals/Review";
+import { OMDB } from "../../api";
+import {
+  movieSearchResolved
+} from "../../redux/actions/movie.actions";
 
 export interface IMovieInfoProps {
   movie: IMovieState;
+  name: string;
+  year: string;
+
+  movieSearchResolved: (
+    name: string,
+    plot: string,
+    year: string,
+    posterUrl: string
+  ) => void;
 }
 
 class MovieInfo extends React.Component<IMovieInfoProps> {
@@ -20,7 +33,19 @@ class MovieInfo extends React.Component<IMovieInfoProps> {
     return this.props.movie.posterUrl;
   }
 
+  getMovie() {
+    console.log(this.props.name);
+    OMDB.getSingleMovie(this.props.name, this.props.year).then(payload => {
+      const name = payload.data.Title;
+      const plot = payload.data.Plot;
+      const year = payload.data.Year;
+      const posterUrl = payload.data.Poster;
+      this.props.movieSearchResolved(name, plot, year, posterUrl);
+    });
+  }
+
   public render() {
+    this.getMovie();
     return (
       <div className="movie-info">
         <div className="row">
@@ -97,6 +122,7 @@ const mapStateToProps = (state: IState) => ({
 });
 
 const mapDispatchToProps = {
+  movieSearchResolved: movieSearchResolved,
 };
 
 export default connect(

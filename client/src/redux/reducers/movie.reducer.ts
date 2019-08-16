@@ -17,6 +17,14 @@ const initialState = {
 
 export const movieReducer = (state = initialState, action: any) => {
   switch (action.type) {
+
+    case movieTypes.MOVIE_INFO:
+      return {
+        ...state, 
+        name: action.payload.name,
+        year: action.payload.year
+      }
+
     case movieTypes.TO_RESULTS:
       return {
         ...state,
