@@ -4,7 +4,7 @@ import "./main.css";
 import { Provider } from "react-redux";
 import { store } from "../redux/Store";
 import { Switch, Route, Redirect, BrowserRouter } from "react-router-dom";
-import { NavComponent } from "../components";
+import { Nav } from "../components";
 import {
   SomethingWentWrongPg,
   SingleReviewPg,
@@ -17,10 +17,12 @@ const App: React.FC = () => {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <NavComponent />
+        <Nav />
         <Switch>
-          <Route exact path="/home" component={HomePg} />
-          <Route exact path="/review" component={SingleReviewPg} />
+          <Route exact path="/" component={HomePg} />
+          {/* <Route exact path="/review" component={SingleReviewPg} />           */}
+          <Route path="/review/:title/:year" component={SingleReviewPg} />
+          {/* /:movieTitle */}
           <Route exact path="/results" component={SearchResults} />
           <Route exact path="/profile" component={ProfilePg} />
           <Route exact path="/home/404" component={SomethingWentWrongPg} />

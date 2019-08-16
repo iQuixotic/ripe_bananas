@@ -25,6 +25,7 @@
     font-size: 40px;
     font-weight: bold;
     justify-items: center;
+    font-family: "Cairo", sans-serif;
 }
 
 .navigation .blue-bg {  
@@ -89,4 +90,16 @@
     .navigation .logo {
       height: 25px;
     }
+
+    .navigation .brand {
+        text-align: center;
+    }
+}
+
+.navigation .brand {    
+    margin-left: 20px;
+}
+
+.pad-5 {
+    padding: 10px !important;
 }

@@ -5,7 +5,8 @@ export const movieTypes = {
   TO_RESULTS: "TO_RESULTS",
   TO_REVIEW: "TO_REVIEW",
   TO_404: "TO_404",
-  SEARCH_OBJECT: "SEARCH_OBJECT"
+  SEARCH_OBJECT: "SEARCH_OBJECT",
+  MOVIE_INFO: "MOVIE_INFO"
 };
 
 export const movieSearchObject = (
@@ -37,6 +38,15 @@ export const movieSearchResolved = (
       posterUrl
     },
     type: movieTypes.MOVIE_SEARCH_RESOLVED
+  });
+};
+
+export const movieInfo = (name: string, year: string) => (dispatch: any) => {
+  dispatch({
+    payload: {
+      name, year
+    },
+    type: movieTypes.MOVIE_INFO
   });
 };
 
