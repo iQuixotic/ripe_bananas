@@ -51,6 +51,27 @@
     border-radius: 0;
 }
 
+.search-bar {
+    padding-top: 100px;
+}
+
+.menu-btn {
+    padding-top: 85px;
+    
+}
+
+.header-adj {
+    padding-top: 85px;    
+}
+
+.ban-adj {
+    margin-top: 5px;
+}
+
+.menu-height {
+    padding: 7px !important;
+}
+
 .login .modal-title {
     color: #F5C518;
 }

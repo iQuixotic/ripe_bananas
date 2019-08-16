@@ -19,11 +19,16 @@ body {
   }
 
   .navigation #title {
-    font-size: 25px;
+    font-size: 35px !important;
+  }
+
+  .navigation .header-adj {
+    padding-top: 0;
+    margin:auto !important;
   }
 
   .navigation .logo {
-    height: 25px;
+    height: 35px !important;
   }
 
   .search-results .result-margin {
