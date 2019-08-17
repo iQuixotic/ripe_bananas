@@ -27,19 +27,29 @@ export interface IMovieInfoProps {
   class MovieInfo extends React.Component<IMovieInfoProps> {
     
     componentDidMount = () => {
-      this.getMovie();
+      this.getMovieData()
     }
+    
+    getPoster(): string {
+      if (this.props.movie.posterUrl === "N/A") {
+        return NoPoster;
+      }
+      return this.props.movie.posterUrl;
+    }
+    
+    getMovieData() {
+      const url = window.location.href;
+      const endOfUrl = url.substr(url.lastIndexOf('/review') + 8)
+      const movieYear = endOfUrl.substr(endOfUrl.replace('%20', ' ').lastIndexOf('/') + 3)
+      const movieTitle = endOfUrl.replace('%20', ' ').slice(0, endOfUrl.lastIndexOf('/') - 2)
+      console.log('this is the get movie',  movieTitle);
 
-  getPoster(): string {
-    if (this.props.movie.posterUrl === "N/A") {
-      return NoPoster;
-    }
-    return this.props.movie.posterUrl;
+      this.getMovie(movieTitle, movieYear);
   }
 
-  getMovie() {
-    console.log(this.props.name);
-    OMDB.getSingleMovie(this.props.name, this.props.year).then(payload => {
+  getMovie(title: any, year: any) {
+    OMDB.getSingleMovie(title, year).then(payload => {
+
       const name = payload.data.Title;
       const plot = payload.data.Plot;
       const year = payload.data.Year;

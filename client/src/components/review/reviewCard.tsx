@@ -26,7 +26,7 @@ export interface IResultsProps {
       constructor(props: any) {
           super(props)
           this.state = {
-              isOpen: true
+              isOpen: false
           }
       }
 
