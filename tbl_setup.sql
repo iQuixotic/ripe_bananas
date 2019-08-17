@@ -10,12 +10,11 @@ create table user_tbl(
 
 --drop table movie_tbl;
 create table movie_tbl(
-	poster varchar(255) primary key,
+	id serial primary key,
 	title varchar(100) not null,
-	genre varchar(30) not null,
+	rating int not null,
 	description text not null,
-	numrating int not null,
-	rating decimal
+	year int
 );
 
 --drop table review_tbl;
@@ -24,6 +23,27 @@ create table review_tbl(
 	author int references user_tbl(id) not null,
 	rating int not null,
 	description text not null,
-	date Date not null,
-	poster varchar(255) references movie_tbl(poster)
+	date varchar(255) not null,
+	movie_id varchar(255) references movie_tbl(id) not null
+	
 );
+
+
+
+
+-- create table movie_tbl(
+-- 	id serial primary key,
+-- 	title varchar(100) not null,
+-- 	rating int not null,
+-- 	description text not null,
+-- 	year int
+-- );
+
+-- create table review_tbl(
+-- 	id serial primary key,
+-- 	author int references user_tbl(id) not null,
+-- 	rating int not null,
+-- 	description text not null,
+-- 	date varchar(255) not null,
+-- 	movie_id int references movie_tbl(id) not null
+-- );

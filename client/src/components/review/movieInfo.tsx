@@ -26,9 +26,9 @@ export interface IMovieInfoProps {
   
   class MovieInfo extends React.Component<IMovieInfoProps> {
     
-    // componentDidMount = () => {
-    //   this.getMovie();
-    // }
+    componentDidMount = () => {
+      this.getMovie();
+    }
 
   getPoster(): string {
     if (this.props.movie.posterUrl === "N/A") {
@@ -49,7 +49,7 @@ export interface IMovieInfoProps {
   }
 
   public render() {
-    this.getMovie();
+    // this.getMovie();
     return (
       <div className="movie-info">
         <div className="row">
