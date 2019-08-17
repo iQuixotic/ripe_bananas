@@ -1,7 +1,7 @@
 import { movieTypes } from "../actions/movie.actions";
 
 const initialState = {
-  name: "",
+  name: window.location.href,
   plot: "",
   year: "",
   posterUrl: "",
