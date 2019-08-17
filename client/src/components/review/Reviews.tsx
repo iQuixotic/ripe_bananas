@@ -6,9 +6,9 @@ import { singleReviewMessageReq } from "../../redux/actions/pages.actions";
 import { singleReviewIsOpen } from "../../redux/actions/dbReviews.actions";
 
 export interface IResultsProps {
-  reviews: IReviewState;
-  singleReviewMessageReq: () => void;
-  singleReivewIsOpen: (bool: boolean) => void;
+  // reviews: IReviewState;
+  // singleReviewMessageReq: () => void;
+  // singleReivewIsOpen: (bool: boolean) => void;
 }
 class Reviews extends React.Component<IResultsProps> {
   /**
@@ -38,8 +38,6 @@ class Reviews extends React.Component<IResultsProps> {
       <div key={i} className="col-12">
         <ReviewCard
           className="movie-info"          
-          openClose={() => this.props.singleReivewIsOpen(this.props.reviews.isOpen)}
-          reviewOpen={this.props.reviews.isOpen}
           rating={values.rating}
           fn={values.fn}
           ln={values.ln}
@@ -52,16 +50,17 @@ class Reviews extends React.Component<IResultsProps> {
   }
 }
 
-const mapStateToProps = (state: IState) => ({
-  reviews: state.reviews
-});
+export default Reviews;
+// const mapStateToProps = (state: IState) => ({
+//   reviews: state.reviews
+// });
 
-const mapDispatchToProps = {
-  singleReivewIsOpen: singleReviewIsOpen,
-  singleReviewMessageReq: singleReviewMessageReq
-};
+// const mapDispatchToProps = {
+//   singleReivewIsOpen: singleReviewIsOpen,
+//   singleReviewMessageReq: singleReviewMessageReq
+// };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Reviews);
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(Reviews);
