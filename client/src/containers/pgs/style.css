@@ -14,6 +14,13 @@
 .pg-bg {
   background-color: #141414;
   min-height: 70vh;
+  
+}
+
+.bullshit {
+  font-color: white;
+  background: yellow;
+  font-family: cursive ;
 }
 
 .center-message {

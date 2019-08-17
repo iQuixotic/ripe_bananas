@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { IState, IPageState } from "../../redux/reducers";
 import { dashboardMessageReq } from "../../redux/actions/pages.actions";
 // import Carousel  from '../../components/carousel/carousel'
+import welcome from "./welcome.png"
 
 export interface IPageProps {
   message: IPageState;
@@ -19,13 +20,21 @@ export interface IPageProps {
 
 export class HomePg extends React.Component<IPageProps> {
   render() {
+
     return (
       <div className="pg-bg">
-        Home page
+      Home page  
+     <img src="http://www.pngmart.com/files/3/Welcome-PNG-Image.png" alt="welcome"/>
+  
+    
       </div>
+
+   
     );
   }
 }
+
+
 
 const mapStateToProps = (state: IState) => ({
   message: state.page
@@ -42,3 +51,5 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(HomePg);
+
+
