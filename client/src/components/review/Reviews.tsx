@@ -1,12 +1,13 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { IState, IReviewState } from "../../redux/reducers";
+import { IState, IReviewState, ILoginState, IUserState } from "../../redux/reducers";
 import { ReviewCard } from "..";
 import { singleReviewMessageReq } from "../../redux/actions/pages.actions";
 import { singleReviewIsOpen } from "../../redux/actions/dbReviews.actions";
 
 export interface IResultsProps {
-  // reviews: IReviewState;
+  reviews: IReviewState;
+  user: IUserState;
   // singleReviewMessageReq: () => void;
   // singleReivewIsOpen: (bool: boolean) => void;
 }
@@ -32,7 +33,14 @@ class Reviews extends React.Component<IResultsProps> {
   }
 
   public render() {
-    const reviewArrayList = this.createList();
+    const reviewArrayList = [];
+    reviewArrayList.push({
+      rating: this.props.reviews.reviewRating,
+      fn: this.props.user.userFirstname,
+      ln: this.props.user.userLastname,
+      title: this.props.reviews.reviewTitle,
+      body: this.props.reviews.reviewBody
+    });
 
     const reviewList = Object.values(reviewArrayList).map((values, i) => (
       <div key={i} className="col-12">
@@ -41,7 +49,7 @@ class Reviews extends React.Component<IResultsProps> {
           rating={values.rating}
           fn={values.fn}
           ln={values.ln}
-          title={values.reviewTitle}
+          title={values.title}
           review={values.body}
         />
       </div>
@@ -50,17 +58,17 @@ class Reviews extends React.Component<IResultsProps> {
   }
 }
 
-export default Reviews;
-// const mapStateToProps = (state: IState) => ({
-//   reviews: state.reviews
-// });
+const mapStateToProps = (state: IState) => ({
+  reviews: state.reviews,
+  user: state.user
+});
 
-// const mapDispatchToProps = {
-//   singleReivewIsOpen: singleReviewIsOpen,
-//   singleReviewMessageReq: singleReviewMessageReq
-// };
+const mapDispatchToProps = {
+  singleReivewIsOpen: singleReviewIsOpen,
+  singleReviewMessageReq: singleReviewMessageReq
+};
 
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(Reviews);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Reviews);
