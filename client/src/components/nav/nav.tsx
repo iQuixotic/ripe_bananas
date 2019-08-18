@@ -6,18 +6,31 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logoutUser } from "../../redux/actions/users.actions";
-import { IState, IUserState } from "../../redux/reducers";
+import { IState, IUserState, ILoginState } from "../../redux/reducers";
 import "./style.css";
 import Login from "../Modals/Login";
 import Signup from "../Modals/Signup";
+import { loggedIn } from "../../redux/actions/loginsignup.actions";
 
 export interface INavProps {
   user: IUserState;
+  login: ILoginState;
 
   logoutUser: () => void;
+  loggedIn: (loggedIn: boolean) => void;
 }
 
 class NavNew extends React.Component<INavProps> {
+
+  logoutUser() {
+    this.props.logoutUser();
+    this.logInOut();
+  }
+
+  logInOut() {
+    this.props.loggedIn(!this.props.login.isLoggedIn);
+  }
+
   public render() {
     return (
       <div className="navigation">
@@ -44,29 +57,44 @@ class NavNew extends React.Component<INavProps> {
                 <Link className="btn btn-block dropcontent" to="/">
                   Home
                 </Link>
-                <Link className="btn btn-block dropcontent" to="/profile">
-                  Profile
-                </Link>
-                <button
-                  className="btn btn-block dropcontent"
-                  data-toggle="modal"
-                  data-target="#signup-modal"
-                >
-                  Signup
-                </button>
-                <button
-                  className="btn btn-block dropcontent"
-                  data-toggle="modal"
-                  data-target="#login-modal"
-                >
+                {this.props.login.isLoggedIn ? (
+                  <div>
+                    <Link className="btn btn-block dropcontent" to="/profile">
+                      Profile
+                    </Link>
+                    <button
+                    className="btn btn-block dropcontent"
+                    onClick={() => this.logoutUser()}
+                  >
+                    Logout
+                  </button>
+                </div>): null 
+                }
+
+              {!this.props.login.isLoggedIn ? (
+                <div>
+                  <button
+                    className="btn btn-block dropcontent"
+                    data-toggle="modal"
+                    data-target="#signup-modal"
+                  >
+                    Signup
+                  </button>
+                  <button
+                    className="btn btn-block dropcontent"
+                    data-toggle="modal"
+                    data-target="#login-modal"
+                  >
                   Login
-                </button>
-                <button
+                  </button>
+                </div>): null
+              }
+                {/* <button
                   className="btn btn-block dropcontent"
-                  onClick={() => this.props.logoutUser()}
+                  onClick={() => this.logoutUser()}
                 >
                   Logout
-                </button>
+                </button> */}
               </div>
             </div>
           </div>
@@ -99,11 +127,13 @@ class NavNew extends React.Component<INavProps> {
 }
 
 const mapStateToProps = (state: IState) => ({
-  user: state.user
+  user: state.user,
+  login: state.login
 });
 
 const mapDispatchToProps = {
-  logoutUser: logoutUser
+  logoutUser: logoutUser,
+  loggedIn: loggedIn
 };
 
 export default connect(

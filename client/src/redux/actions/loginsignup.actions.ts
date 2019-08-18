@@ -7,7 +7,8 @@ export const loginTypes = {
   SIGNUP_FIRSTNAME_UPDATE: "SIGNUP_FIRSTNAME_UPDATE",
   SIGNUP_LASTNAME_UPDATE: "SIGNUP_LASTNAME_UPDATE",
   LOGIN_USER: "LOGIN_USER",
-  SIGNUP_VALIDATE: "SIGNUP_VALIDATE"
+  SIGNUP_VALIDATE: "SIGNUP_VALIDATE",
+  IS_LOGGED_IN: "IS_LOGGED_IN"
 };
 
 export const signupValid = (signupValid: boolean) => (dispatch: any) => {
@@ -16,6 +17,15 @@ export const signupValid = (signupValid: boolean) => (dispatch: any) => {
       signupValid
     },
     type: loginTypes.SIGNUP_VALIDATE
+  });
+};
+
+export const loggedIn = (isLoggedIn: boolean) => (dispatch: any) => {
+  dispatch({
+    payload: {
+      isLoggedIn
+    },
+    type: loginTypes.IS_LOGGED_IN
   });
 };
 
