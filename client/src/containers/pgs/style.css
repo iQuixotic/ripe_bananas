@@ -14,14 +14,19 @@
 .pg-bg {
   background-color: #141414;
   min-height: 70vh;
+  max-width: 100%;
+  height: auto;
+  color: black;
+
   
 }
 
-.bullshit {
-  font-color: white;
-  background: yellow;
-  font-family: cursive ;
+.fit-image{
+width: 100%;
+object-fit: cover;
+height: 100%; /* only if you want fixed height */
 }
+
 
 .center-message {
   margin: auto;

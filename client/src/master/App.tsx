@@ -20,9 +20,7 @@ const App: React.FC = () => {
         <Nav />
         <Switch>
           <Route exact path="/" component={HomePg} />
-          {/* <Route exact path="/review" component={SingleReviewPg} />           */}
           <Route path="/review/:title/:year" component={SingleReviewPg} />
-          {/* /:movieTitle */}
           <Route exact path="/results" component={SearchResults} />
           <Route exact path="/profile" component={ProfilePg} />
           <Route exact path="/home/404" component={SomethingWentWrongPg} />
