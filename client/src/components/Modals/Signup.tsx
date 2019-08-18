@@ -7,8 +7,10 @@ import {
   signupConfirmPassword,
   signupFirstnameUpdate,
   signupLastnameUpdate,
-  signupValid
+  signupValid,
+  loggedIn
 } from "../../redux/actions/loginsignup.actions";
+import { APIU } from '../../api'
 import { userLogin } from "../../redux/actions/users.actions";
 
 export interface ISignupProps {
@@ -22,6 +24,7 @@ export interface ISignupProps {
   signupFirstnameUpdate: (fn: string) => void;
   signupLastnameUpdate: (ln: string) => void;
   signupValid: (validPassword: boolean) => void;
+  loggedIn: (loggedIn: boolean) => void;
 
   // user action properties
   userLogin: (firstname: string, lastname: string, email: string, password: string) => void;
@@ -99,13 +102,28 @@ class Signup extends React.Component<ISignupProps> {
    * user to the DB
    */
   signupUser() {
-    console.log(this.props.login.firstname);
-    console.log(this.props.login.lastname);
-    console.log(this.props.login.signupEmail);
-    console.log(this.props.login.signupPassword);
-    console.log(this.props.login.confirmPassword);
+    const data = {
+      firstname: this.props.login.firstname,
+      lastname: this.props.login.lastname,
+      email: this.props.login.signupEmail,
+      password: this.props.login.signupPassword
+    }
+    APIU.registerNewUser(data)
+      .then((res) => {
+        const loginData = {
+          email: res.data.email,
+          password: res.data.password
+        }
+        APIU.login(loginData);
+        this.logInOut();
+      })
+      .catch((e) => { throw e})
     this.props.signupValid(invalid);
     this.props.userLogin(this.props.login.firstname,this.props.login.lastname,this.props.login.signupEmail,this.props.login.signupPassword)
+  }  
+
+  logInOut() {
+    this.props.loggedIn(!this.props.login.isLoggedIn);
   }
 
   public render() {
@@ -252,7 +270,8 @@ const mapDispatchToProps = {
   signupFirstnameUpdate: signupFirstnameUpdate,
   signupLastnameUpdate: signupLastnameUpdate,
   signupValid: signupValid,
-  userLogin: userLogin
+  userLogin: userLogin,
+  loggedIn: loggedIn
 };
 
 export default connect(

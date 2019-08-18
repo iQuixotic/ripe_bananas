@@ -16,6 +16,7 @@ export interface ILoginState {
     lastname: string;
     confirmPassword: string;
     signupValid: boolean;
+    isLoggedIn: boolean;
 }
 
 export interface IReviewState {

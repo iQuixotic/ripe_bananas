@@ -8,11 +8,17 @@ const initialState = {
   firstname: "",
   lastname: "",
   confirmPassword: "",
-  signupValid: true
+  signupValid: true,
+  isLoggedIn: false
 };
 
 export const loginReducer = (state = initialState, action: any) => {
   switch (action.type) {
+    case loginTypes.IS_LOGGED_IN:
+      return {
+        ...state,
+        isLoggedIn: action.payload.isLoggedIn
+      };
     case loginTypes.SIGNUP_VALIDATE:
       return {
         ...state,

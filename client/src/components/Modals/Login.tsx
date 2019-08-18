@@ -3,9 +3,12 @@ import { connect } from "react-redux";
 import { ILoginState, IState, IUserState } from "../../redux/reducers";
 import {
   loginEmailUpdate,
-  loginPasswordUpdate
+  loginPasswordUpdate,
+  loggedIn
 } from "../../redux/actions/loginsignup.actions";
 import { userLogin } from "../../redux/actions/users.actions";
+import { APIU } from '../../api';
+import Axios from "axios";
 
 export interface ILoginProps {
   login: ILoginState;
@@ -13,6 +16,7 @@ export interface ILoginProps {
 
   // action properties
   loginEmailUpdate: (email: string) => void;
+  loggedIn: (loggedIn: boolean) => void;
   loginPasswordUpdate: (password: string) => void;
   userLogin: (
     firstname: string,
@@ -63,12 +67,46 @@ class Login extends React.Component<ILoginProps> {
    * the email and password they type in the login modal
    */
   loginUser() {
-    console.log(this.props.login.loginEmail);
-    console.log(this.props.login.loginPassword);
-    //axios call to get user
+    const data = {
+      email:this.props.login.loginEmail,
+      password: this.props.login.loginPassword
+    }
+
+    APIU.login(data)
+      .then(res => {
+        if(res.status == 200 && res.data.token) {
+          window.localStorage.setItem("token", res.data.token)
+          this.getUserData();
+       } else {
+        //  set the state to retry
+       }       
+       this.logInOut();
+      }
+       )
+      .catch(e => { throw e })
+    //axios call to get userbyemail...
 
     //update current user
     // userLogin(this.payload.data.firstname, this.payload.data.lastname, this.payload.data.email, this.payload.data.password);
+  }
+
+  logInOut() {
+    this.props.loggedIn(!this.props.login.isLoggedIn);
+  }
+
+  getUserData = () => {
+    const data = {
+      email: this.props.login.loginEmail
+    }
+    console.log(data)
+    APIU.getAndSetUserByEmail(data)
+      // .then(() => console.log("im getting called"))
+      .then(res => {
+        this.props.user.userEmail = res.data.email;
+        this.props.user.userFirstname = res.data.firstname;
+        this.props.user.userLastname = res.data.lastname;
+      })
+      .catch(e => { throw e })
   }
 
   public render() {
@@ -156,6 +194,7 @@ const mapStateToProps = (state: IState) => ({
 const mapDispatchToProps = {
   loginEmailUpdate: loginEmailUpdate,
   loginPasswordUpdate: loginPasswordUpdate,
+  loggedIn: loggedIn,
   userLogin: userLogin
 };
 
