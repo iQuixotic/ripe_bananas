@@ -3,7 +3,7 @@ import logo from "./logo.png";
 import Searchbar from "./searchbar";
 import { faEllipsisH } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { logoutUser } from "../../redux/actions/users.actions";
 import { IState, IUserState, ILoginState } from "../../redux/reducers";
@@ -25,6 +25,7 @@ class NavNew extends React.Component<INavProps> {
   logoutUser() {
     this.props.logoutUser();
     this.logInOut();
+    window.location.href = '/';
   }
 
   logInOut() {
