@@ -12,52 +12,58 @@ export interface IResultsProps {
   // singleReviewMessageReq: () => void;
   // singleReivewIsOpen: (bool: boolean) => void;
 }
+
 class Reviews extends React.Component<IResultsProps> {
-  
+
+
   componentDidMount = () => {
     this.getSingleUserMovieReviews();
   }
 
-  createList() {
+  createList(): any {
     //replace this with the axios call which should return an
     //array of JSON objects
 
     const list: any = this.getSingleUserMovieReviews();
-    console.log(list);
-    list.forEach((el: { rating: string; fn: string; ln: string; title: string; body: string; }[]) => {
-      el.push({
-        rating: this.props.reviews.reviewRating,
-        fn: this.props.user.userFirstname,
-        ln: this.props.user.userLastname,
-        title: this.props.reviews.reviewTitle,
-        body: this.props.reviews.reviewBody
-      });
-    });
-    return list;
+
+    const arr: any = [];
+    if (list) {
+      for (let i = 0; i < list.length; i++) {
+        arr.push({
+          rating: list[i].rating,
+          fn: list[i].user.firstname,
+          ln: list[i].user.lastname,
+          title: list[i].title,
+          body: list[i].review
+        });
+      }
+    }
+    // list.forEach((el: { rating: string; fn: string; ln: string; title: string; body: string; }[]) => {
+    //   arr.push({
+    //     rating: el.rating,
+    //     fn: el.fn,
+    //     ln: el.ln,
+    //     title: el.title,
+    //     body: el.body
+    //   });
+    // });
+    console.log(arr);
+    return arr;
   }
 
   getSingleUserMovieReviews = () => {
     APIR.getSingleUserMovieRevs(this.props.user.userEmail)
-      .then(res =>  res.data)
+      .then(res => res.data)
       .catch(e => { throw e })
   }
 
   public render() {
-    const reviewArrayList = [];
+    const reviewArrayList = this.createList();
 
-  
-    reviewArrayList.push({
-      rating: this.props.reviews.reviewRating,
-      fn: this.props.user.userFirstname,
-      ln: this.props.user.userLastname,
-      title: this.props.reviews.reviewTitle,
-      body: this.props.reviews.reviewBody
-    });
-
-    const reviewList = Object.values(reviewArrayList).map((values, i) => (
-      <div key={i} className="col-12">
+    const reviewList = reviewArrayList.map((values: any) => (
+      <div key={values.body} className="col-12">
         <ReviewCard
-          className="movie-info"          
+          className="movie-info"
           rating={values.rating}
           fn={values.fn}
           ln={values.ln}
@@ -84,3 +90,97 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Reviews);
+
+
+// import * as React from "react";
+// import { connect } from "react-redux";
+// import { IState, IReviewState, ILoginState, IUserState } from "../../redux/reducers";
+// import { ReviewCard } from "..";
+// import { singleReviewMessageReq } from "../../redux/actions/pages.actions";
+// import { singleReviewIsOpen } from "../../redux/actions/dbReviews.actions";
+// import { APIR } from '../../api'
+
+// export interface IResultsProps {
+//   reviews: IReviewState;
+//   user: IUserState;
+//   // singleReviewMessageReq: () => void;
+//   // singleReivewIsOpen: (bool: boolean) => void;
+// }
+
+// let reviewList: any;
+// let x: any;
+// class Reviews extends React.Component<IResultsProps> {
+
+//   state = {
+//     list: [],
+//     isLoaded: false
+//   }
+
+//   componentDidMount = () => {
+//     this.getSingleUserMovieReviews();
+//     this.createList();   
+//   }
+
+//   createList(): any {
+
+//     const list: any = x;
+//     console.log("list here: ", list)
+//     const arr: any = [];
+//     if (list) {
+//       for (let i = 0; i < list.length; i++) {
+//         arr.push({
+//           rating: list[i].rating,
+//           fn: list[i].user.firstname,
+//           ln: list[i].user.lastname,
+//           title: list[i].title,
+//           body: list[i].review
+//         });
+//       }
+        
+//         this.setState({
+//           list: arr,
+//           isLoaded: true
+//         })
+//     }
+//   }
+
+//   getSingleUserMovieReviews = () => {
+//     APIR.getSingleUserMovieRevs(this.props.user.userEmail)
+//       .then(res => x = res.data)
+//       .catch(e => { throw e })
+//   }
+
+//   public render() {
+      
+//       const reviewArrayList = this.createList();
+  
+//       // const reviewList = reviewArrayList.map((values: any) => (
+//       //   <div key={values.body} className="col-12">
+//       //     <ReviewCard
+//       //       className="movie-info"
+//       //       rating={values.rating}
+//       //       fn={values.fn}
+//       //       ln={values.ln}
+//       //       title={values.title}
+//       //       review={values.body}
+//       //     />
+//       //   </div>
+//       // ));
+//     return <div className="row">{this.state.isLoaded ? reviewList : <div></div>}</div>;
+//   }
+// }
+
+// const mapStateToProps = (state: IState) => ({
+//   reviews: state.reviews,
+//   user: state.user
+// });
+
+// const mapDispatchToProps = {
+//   singleReivewIsOpen: singleReviewIsOpen,
+//   singleReviewMessageReq: singleReviewMessageReq
+// };
+
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(Reviews);

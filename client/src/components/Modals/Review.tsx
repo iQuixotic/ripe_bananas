@@ -1,6 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { IState, IReviewState } from "../../redux/reducers";
+import { IState, IReviewState, IUserState, IMovieState } from "../../redux/reducers";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import "./style.css";
@@ -9,9 +9,12 @@ import {
   reviewTitleUpdate,
   reviewBodyUpdate
 } from "../../redux/actions/dbReviews.actions";
+import { APIR } from "../../api";
 
 export interface IReviewProps {
   reviews: IReviewState;
+  user: IUserState;
+  //movie: IMovieState;
 
   reviewRatingUpdate: (reviewRating: string) => void;
   reviewTitleUpdate: (reviewTitle: string) => void;
@@ -24,7 +27,8 @@ export interface IReviewProps {
  * Has the function that contains axios post call
  * to post a new review
  */
-class Review extends React.Component<IReviewProps> {
+class Review extends React.Component<any> {
+  
   updateRating(e: any) {
     const value = e.target.value;
     console.log(e.target.value);
@@ -57,9 +61,28 @@ class Review extends React.Component<IReviewProps> {
   /**
    * post the review to the DB
    */
+  
   createReview() {
-    //post review
-  }
+    const url = window.location.href;
+    const endOfUrl = url.substr(url.lastIndexOf('/review') + 8)
+    const movieYear = endOfUrl.substr(endOfUrl.replace('%20', ' ').lastIndexOf('/') + 3)
+    const movieTitle = endOfUrl.replace('%20', ' ').slice(0, endOfUrl.lastIndexOf('/') - 2)
+    const data = {
+      email: this.props.user.userEmail,
+      title: movieTitle,
+      year: movieYear,
+      plot: this.props.plot,
+      poster: this.props.poster,
+      revTitle: this.props.reviews.reviewTitle,
+      body: this.props.reviews.reviewBody,
+      rating: this.props.reviews.reviewRating
+    }
+    console.log(data);
+
+    APIR.postReview(data)
+      // .then(res => APIR.doEverything(res.data))
+      // .catch(e => { throw e });
+    }
 
   public render() {
     return (
@@ -175,7 +198,8 @@ class Review extends React.Component<IReviewProps> {
 }
 
 const mapStateToProps = (state: IState) => ({
-  reviews: state.reviews
+  reviews: state.reviews,
+  user: state.user
 });
 
 const mapDispatchToProps = {

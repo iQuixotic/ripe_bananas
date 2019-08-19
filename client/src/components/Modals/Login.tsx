@@ -95,11 +95,8 @@ class Login extends React.Component<ILoginProps> {
   }
 
   getUserData = () => {
-    const data = {
-      email: this.props.login.loginEmail
-    }
-    console.log(data)
-    APIU.getAndSetUserByEmail(data)
+    const email = this.props.login.loginEmail
+    APIU.getAndSetUserByEmail(email)
       // .then(() => console.log("im getting called"))
       .then(res => {
         this.props.user.userEmail = res.data.email;

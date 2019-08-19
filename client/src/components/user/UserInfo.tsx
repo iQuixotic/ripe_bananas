@@ -62,7 +62,7 @@ class UserInfo extends React.Component<IMovieInfoProps> {
               <h4 className="display-inline col-12">Number of ratings:</h4>
             </div>
             <p className="col-12">
-              {`(${this.props.user.userPassword})`}
+              {/* {`(${this.props.user.userPassword})`} */}
               {/* {`(${this.props.user.numReviews})`} */}
             </p>
           </div>

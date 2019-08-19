@@ -10,13 +10,20 @@ export default {
     },
     
     // get user by email    
+    // getAndSetUserByEmail: (data: any) => {
+    //     return axios({
+    //         method: "POST",
+    //         url: ('http://localhost:8080/users/em'),
+    //         data: data
+    //     })
+    // },    
+    
     getAndSetUserByEmail: (data: any) => {
         return axios({
-            method: "POST",
-            url: ('http://localhost:8080/users/em'),
-            data: data
+            method: "get",
+            url: 'http://localhost:8080/users/' + data
         })
-    },       
+    },
 
     // register a user
     registerNewUser: (data: any) => {

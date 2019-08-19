@@ -21,30 +21,59 @@ export interface IMovieInfoProps {
     plot: string,
     year: string,
     posterUrl: string
-    ) => void;
-  }
-  
-  class MovieInfo extends React.Component<IMovieInfoProps> {
-    
-    componentDidMount = () => {
-      this.getMovieData()
-    }
-    
-    getPoster(): string {
-      if (this.props.movie.posterUrl === "N/A") {
-        return NoPoster;
-      }
-      return this.props.movie.posterUrl;
-    }
-    
-    getMovieData() {
-      const url = window.location.href;
-      const endOfUrl = url.substr(url.lastIndexOf('/review') + 8)
-      const movieYear = endOfUrl.substr(endOfUrl.replace('%20', ' ').lastIndexOf('/') + 3)
-      const movieTitle = endOfUrl.replace('%20', ' ').slice(0, endOfUrl.lastIndexOf('/') - 2)
-      console.log('this is the get movie',  movieTitle);
+  ) => void;
+}
 
-      this.getMovie(movieTitle, movieYear);
+interface IInfoState {
+  title: string,
+  year: string,
+  plot: string,
+  poster: string;
+}
+
+class MovieInfo extends React.Component<IMovieInfoProps, IInfoState> {
+  constructor(props: any) {
+    super(props)
+  
+  this.state = {
+    title: '',
+    year: '',
+    plot: '',
+    poster: ''
+  }
+  this.componentDidMount = () => {
+    this.getMovieData()
+  }
+}
+
+  // handleStateChange = (e: any) => {
+  //   this.setState({
+  //     [e.currentTarget.name]: e.currentTarget.value
+  //   })
+  // }  
+
+  getPoster(): string {
+    if (this.props.movie.posterUrl === "N/A") {
+      return NoPoster;
+    }
+    return this.props.movie.posterUrl;
+  }
+
+  getMovieData() {
+    const url = window.location.href;
+    const endOfUrl = url.substr(url.lastIndexOf('/review') + 8)
+    let movieTitle;
+    if(endOfUrl.indexOf('%20')>0) {
+      movieTitle = endOfUrl.replace('%20', ' ').slice(0, endOfUrl.lastIndexOf('/') - 2)
+    }
+    else {
+      movieTitle = endOfUrl.slice(0, endOfUrl.lastIndexOf('/'))
+    }
+    const movieYear = endOfUrl.substr(endOfUrl.replace('%20', ' ').lastIndexOf('/') + 3)
+    
+    console.log('this is the get movie', movieTitle);
+
+    this.getMovie(movieTitle, movieYear);
   }
 
   getMovie(title: any, year: any) {
@@ -54,6 +83,12 @@ export interface IMovieInfoProps {
       const plot = payload.data.Plot;
       const year = payload.data.Year;
       const posterUrl = payload.data.Poster;
+      this.setState({
+        title: name,
+        year: year,
+        plot: plot,
+        poster: posterUrl
+      })
       this.props.movieSearchResolved(name, plot, year, posterUrl);
     });
   }
@@ -102,7 +137,12 @@ export interface IMovieInfoProps {
           aria-labelledby="reviewModal"
           aria-hidden="true"
         >
-          <Review />
+          <Review 
+            title={this.state.title}
+            year={this.state.year}
+            poster={this.state.poster}
+            plot={this.state.plot} 
+            />
         </div>
 
         {/* signup modal */}
